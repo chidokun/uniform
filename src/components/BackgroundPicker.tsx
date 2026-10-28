@@ -5,6 +5,7 @@ import { CheckIcon, PaletteIcon } from './icons';
 
 /** Kiểu nền — CSS tương ứng ở mục "Hình nền" trong globals.css. Phần tử đầu tiên là mặc định. */
 export const BACKGROUNDS = [
+  { id: 'sky', name: 'Bầu trời', desc: 'Mây trôi trên trời xanh' },
   { id: 'ambient', name: 'Ambient', desc: 'Studio, ánh theo màu áo' },
   { id: 'studio', name: 'Studio', desc: 'Trung tính, đèn rọi' },
   { id: 'mono', name: 'Đơn sắc', desc: 'Tông màu của đội' },

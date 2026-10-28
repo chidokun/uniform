@@ -35,6 +35,9 @@
   --bg-glow: 0.55;
   --pitch-top: #3f9a5c;
   --pitch-bottom: #23703d;
+  --sky-top: #3d8fe0;
+  --sky-bottom: #a9d3f5;
+  --sky-filter: none;
 
   /* Màu nhấn — Showcase ghi đè theo đội đang chọn */
   --accent: #6c5ce7;
@@ -68,6 +71,9 @@
   --bg-glow: 0.4;
   --pitch-top: #14532d;
   --pitch-bottom: #062114;
+  --sky-top: #0b1d3a;
+  --sky-bottom: #1d3f66;
+  --sky-filter: brightness(.5) saturate(.85);
   color-scheme: dark;
 }
 
@@ -91,6 +97,9 @@
     --bg-glow: 0.4;
     --pitch-top: #14532d;
     --pitch-bottom: #062114;
+    --sky-top: #0b1d3a;
+    --sky-bottom: #1d3f66;
+    --sky-filter: brightness(.5) saturate(.85);
     color-scheme: dark;
   }
 }
@@ -212,7 +221,8 @@ button, select { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   Hình nền — chọn bằng <html data-bg="..."> (BackgroundPicker), mặc định: ambient
+   Hình nền — chọn bằng <html data-bg="..."> (BackgroundPicker), mặc định: sky
+     sky     — video mây trôi trên trời xanh
      ambient — studio trung tính, ánh theo màu áo đang chọn
      studio  — trung tính, đèn rọi từ trên + tối viền
      mono    — đơn sắc theo màu nhấn của đội
@@ -264,7 +274,7 @@ button, select { font: inherit; color: inherit; }
   to { transform: translate3d(5vmax, 3vmax, 0) scale(1.08); }
 }
 
-/* ---------- ambient (mặc định) ---------- */
+/* ---------- ambient (cũng là nền khi chưa có data-bg) ---------- */
 
 .aurora span:nth-child(1),
 .aurora span:nth-child(2) {
@@ -351,6 +361,24 @@ button, select { font: inherit; color: inherit; }
 
 :root[data-bg="pitch"] .aurora span:nth-child(1) { left: -8vmax; }
 :root[data-bg="pitch"] .aurora span:nth-child(2) { left: auto; right: -8vmax; }
+
+/* ---------- sky ---------- */
+
+/* gradient trời hiện trong lúc video đang tải */
+:root[data-bg="sky"] .aurora {
+  background: linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
+}
+
+:root[data-bg="sky"] .aurora span { display: none; }
+
+.aurora-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--sky-filter);
+}
 
 /* ==========================================================================
    Khung trang
@@ -1353,6 +1381,13 @@ button, select { font: inherit; color: inherit; }
   background:
     radial-gradient(80% 70% at 20% 10%, var(--accent), transparent 75%),
     color-mix(in srgb, var(--accent) 30%, var(--bg-neutral));
+}
+
+.bg-thumb--sky {
+  background:
+    radial-gradient(40% 22% at 30% 62%, rgba(255, 255, 255, .95), transparent 70%),
+    radial-gradient(34% 18% at 70% 40%, rgba(255, 255, 255, .85), transparent 70%),
+    linear-gradient(180deg, #3d8fe0, #a9d3f5);
 }
 
 .bg-thumb--pitch {

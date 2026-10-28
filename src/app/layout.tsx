@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 
 /**
  * Chạy trước khi vẽ trang:
- * - áp dụng theme và hình nền đã lưu, tránh nháy
+ * - áp dụng theme và hình nền đã lưu (chưa chọn thì dùng nền mặc định "sky"), tránh nháy
  * - bật khúc xạ kính (SVG filter trên backdrop) chỉ với Chromium — trình duyệt khác giữ kính mờ thường
  */
-const BOOT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('tu-theme');if(t==='light'||t==='dark')d.dataset.theme=t;var g=localStorage.getItem('tu-bg');if(/^(ambient|studio|mono|pitch)$/.test(g))d.dataset.bg=g}catch(e){}var b=navigator.userAgentData&&navigator.userAgentData.brands;if(b&&b.some(function(x){return /Chrom/.test(x.brand)}))d.dataset.refract='on'})()`;
+const BOOT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('tu-theme');if(t==='light'||t==='dark')d.dataset.theme=t;var g=localStorage.getItem('tu-bg');if(/^(sky|ambient|studio|mono|pitch)$/.test(g))d.dataset.bg=g}catch(e){}if(!d.dataset.bg)d.dataset.bg='sky';var b=navigator.userAgentData&&navigator.userAgentData.brands;if(b&&b.some(function(x){return /Chrom/.test(x.brand)}))d.dataset.refract='on'})()`;
 
 /** Bản đồ lệch cho hiệu ứng khúc xạ của .glass--refract */
 function GlassFilters() {
