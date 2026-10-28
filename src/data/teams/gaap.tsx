@@ -1,5 +1,6 @@
 import { GaapLogo } from '@/data/artwork/gaap';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
+import { asset } from '@/lib/asset';
 import { defineTeam } from '@/lib/define-team';
 
 /**
@@ -41,8 +42,14 @@ export default defineTeam({
       views: {
         front: {
           template: 'tshirt-front',
-          // ngực trái người mặc = bên phải khi nhìn mặt trước
-          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
+          // trái/phải tính theo người mặc: ngực trái = bên phải khi nhìn mặt trước, bụng phải = bên trái
+          overlay: (
+            <>
+              <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
+              {/* chim cánh cụt: SVG trace từ ảnh 842×1162, giữ đúng tỉ lệ */}
+              <image href={asset('/teams/gaap/penguin.svg')} x="90" y="214" width="134" height="185" />
+            </>
+          ),
         },
         back: {
           template: 'tshirt-back',
