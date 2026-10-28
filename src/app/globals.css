@@ -9,8 +9,10 @@
    ========================================================================== */
 
 @property --spec { syntax: '<number>'; inherits: true; initial-value: 0.22; }
-@property --mx { syntax: '<percentage>'; inherits: true; initial-value: 30%; }
-@property --my { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
+/* --mx/--my đổi theo từng lần rê chuột: không cho kế thừa xuống nội dung bên trong kính
+   (SVG áo sẽ phải tính lại gradient/clip/filter mỗi khung hình → chớp); chỉ ::after nhận lại. */
+@property --mx { syntax: '<percentage>'; inherits: false; initial-value: 30%; }
+@property --my { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
 
 :root {
   --bg: #eef1f8;
@@ -167,6 +169,8 @@ button, select { font: inherit; color: inherit; }
 }
 
 .glass::after {
+  --mx: inherit;
+  --my: inherit;
   background:
     radial-gradient(140% 90% at var(--mx) var(--my), rgba(var(--spec-color), var(--spec)), transparent 48%),
     linear-gradient(165deg, var(--tint-hi), var(--tint-lo) 60%, var(--tint-hi) 140%);

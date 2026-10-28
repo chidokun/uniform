@@ -2,31 +2,32 @@ import { Garment, type GarmentProps } from './Garment';
 
 /* Áo thun cổ tròn — mặt trước & mặt sau dùng chung dáng thân */
 
+/* Dáng boxy: cổ rộng, vai xuôi, tay ngắn loe, thân suông gần như thẳng, gấu phẳng */
 const BODY =
-  'M165,30 C180,42 220,42 235,30 L305,48 Q352,72 390,118 L350,172 L318,150 ' +
-  'C314,240 316,330 322,420 Q200,434 78,420 C84,330 86,240 82,150 L50,172 L10,118 Q48,72 95,48 Z';
-const GROUND = { cx: 200, cy: 440, rx: 125, ry: 9 };
+  'M147,28 C170,44 230,44 253,28 L310,54 Q321.5,60 328,71 L390,183 L324,226 L322,230 ' +
+  'L329,422 Q200,425 71,422 L78,230 L76,226 L10,183 L72,71 Q78.5,60 90,54 Z';
+const GROUND = { cx: 200, cy: 436, rx: 140, ry: 9 };
 
 const SLEEVE_FOLDS = (
   <>
-    <path d="M40,128 C62,138 80,146 96,150" stroke="#000" strokeOpacity=".14" strokeWidth="10" />
-    <path d="M360,128 C338,138 320,146 304,150" stroke="#000" strokeOpacity=".14" strokeWidth="10" />
+    <path d="M28,160 C46,176 62,188 80,196" stroke="#000" strokeOpacity=".14" strokeWidth="10" />
+    <path d="M372,160 C354,176 338,188 320,196" stroke="#000" strokeOpacity=".14" strokeWidth="10" />
   </>
 );
 
 const SEAMS = (
   <>
-    <path className="g-line" d="M95,48 Q72,100 82,150" />
-    <path className="g-line" d="M305,48 Q328,100 318,150" />
-    <path className="g-stitch" d="M18,112 L58,166" />
-    <path className="g-stitch" d="M382,112 L342,166" />
-    <path className="g-stitch" d="M80,407 Q200,421 320,407" />
+    <path className="g-line" d="M86,56 Q72,150 78,230" />
+    <path className="g-line" d="M314,56 Q328,150 322,230" />
+    <path className="g-stitch" d="M17,178 L76,217" />
+    <path className="g-stitch" d="M383,178 L324,217" />
+    <path className="g-stitch" d="M73,409 Q200,412 327,409" />
   </>
 );
 
-const FRONT_NECK = 'M165,30 C180,42 220,42 235,30 C228,78 172,78 165,30 Z';
-const FRONT_COLLAR = 'M158,28 C166,90 234,90 242,28 L235,30 C228,78 172,78 165,30 Z';
-const BACK_COLLAR = 'M165,30 C180,42 220,42 235,30 L243,33 C224,54 176,54 157,33 Z';
+const FRONT_NECK = 'M147,28 C170,44 230,44 253,28 C244,76 156,76 147,28 Z';
+const FRONT_COLLAR = 'M140,26 C150,86 250,86 260,26 L253,28 C244,76 156,76 147,28 Z';
+const BACK_COLLAR = 'M147,28 C170,44 230,44 253,28 L261,31 C236,56 164,56 139,31 Z';
 
 export function TshirtFront(props: GarmentProps) {
   return (
@@ -47,12 +48,12 @@ export function TshirtFront(props: GarmentProps) {
           {/* lòng cổ (thấy mặt trong thân sau) */}
           <path className="g-fill" d={FRONT_NECK} />
           <path d={FRONT_NECK} fill="#000" fillOpacity=".38" />
-          <path d="M165,30 C180,42 220,42 235,30 L232,34 C218,50 182,50 168,34 Z" fill="#fff" fillOpacity=".10" />
+          <path d="M147,28 C170,44 230,44 253,28 L250,32 C228,52 172,52 150,32 Z" fill="#fff" fillOpacity=".10" />
           {/* bo cổ */}
           <path className="g-fill" d={FRONT_COLLAR} />
           <path d={FRONT_COLLAR} fill="#000" fillOpacity=".10" />
-          <path className="g-stitch" d="M161.5,29 C169,84 231,84 238.5,29" />
-          <path className="g-line" d="M158,28 C166,90 234,90 242,28" />
+          <path className="g-stitch" d="M143.5,27 C153,81 247,81 256.5,27" />
+          <path className="g-line" d="M140,26 C150,86 250,86 260,26" />
         </>
       }
       seams={SEAMS}
@@ -78,8 +79,8 @@ export function TshirtBack(props: GarmentProps) {
         <>
           <path className="g-fill" d={BACK_COLLAR} />
           <path d={BACK_COLLAR} fill="#000" fillOpacity=".10" />
-          <path className="g-stitch" d="M160,32.5 C178,49 222,49 240,32.5" />
-          <path className="g-line" d="M157,33 C176,54 224,54 243,33" />
+          <path className="g-stitch" d="M143,29.5 C167,50 233,50 257,29.5" />
+          <path className="g-line" d="M139,31 C164,56 236,56 261,31" />
         </>
       }
       seams={SEAMS}
