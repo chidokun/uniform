@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react';
+import { useId, type SVGProps } from 'react';
 
 /**
  * Logo chữ "GaaP" theo style sticker của logo Zammy Verse:
@@ -9,6 +9,7 @@ import type { SVGProps } from 'react';
  *
  * Hệ toạ độ riêng: chữ hoa cao 100; cả logo (kể cả viền) nằm trong x -13…376, y 7…154, tâm (181.5, 80.5).
  * Đặt lên áo bằng transform, vd `<GaapLogo transform="translate(200 150) scale(.45) translate(-181.5 -80.5)" />`.
+ * Đổi màu: `ink` (viền, bóng, lòng chữ) và `paper` (mặt chữ); `paper="none"` thì mặt chữ trong suốt (khoét lỗ).
  * Bản SVG rời: public/teams/gaap/logo.svg.
  */
 
@@ -46,18 +47,38 @@ const LETTERS: { transform: string; d: string; hole?: string }[] = [
 const BODY = LETTERS.map((l, i) => <path key={i} transform={l.transform} d={l.d} />);
 const HOLES = LETTERS.map((l, i) => l.hole && <path key={i} transform={l.transform} d={l.hole} />);
 
-export function GaapLogo(props: SVGProps<SVGGElement>) {
+export function GaapLogo({
+  ink = INK,
+  paper = PAPER,
+  ...props
+}: SVGProps<SVGGElement> & { ink?: string; paper?: string }) {
+  const cutId = useId();
+  const transparent = paper === 'none';
   return (
     <g {...props}>
       <g transform="rotate(-5,180,50)" strokeLinejoin="round">
-        {/* khối đổ bóng */}
-        <g transform="translate(4,13)" fill={INK} stroke={INK} strokeWidth="22">{BODY}</g>
-        {/* lấp khe giữa các chữ để viền liền một khối */}
-        <g transform="translate(2,6.5)" fill={INK} stroke={INK} strokeWidth="30">{BODY}</g>
-        {/* viền */}
-        <g fill={INK} stroke={INK} strokeWidth="22">{BODY}</g>
-        <g fill={PAPER}>{BODY}</g>
-        <g fill={INK}>{HOLES}</g>
+        {transparent && (
+          // khoét mặt chữ khỏi phần mực, chừa lại lòng chữ
+          <mask id={cutId} maskUnits="userSpaceOnUse" x="-100" y="-100" width="600" height="400">
+            <rect x="-100" y="-100" width="600" height="400" fill="#FFFFFF" />
+            <g fill="#000000">{BODY}</g>
+            <g fill="#FFFFFF">{HOLES}</g>
+          </mask>
+        )}
+        <g mask={transparent ? `url(#${cutId})` : undefined}>
+          {/* khối đổ bóng */}
+          <g transform="translate(4,13)" fill={ink} stroke={ink} strokeWidth="22">{BODY}</g>
+          {/* lấp khe giữa các chữ để viền liền một khối */}
+          <g transform="translate(2,6.5)" fill={ink} stroke={ink} strokeWidth="30">{BODY}</g>
+          {/* viền */}
+          <g fill={ink} stroke={ink} strokeWidth="22">{BODY}</g>
+        </g>
+        {!transparent && (
+          <>
+            <g fill={paper}>{BODY}</g>
+            <g fill={ink}>{HOLES}</g>
+          </>
+        )}
       </g>
     </g>
   );

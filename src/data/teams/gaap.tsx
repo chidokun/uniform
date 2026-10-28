@@ -3,6 +3,9 @@ import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
 import { defineTeam } from '@/lib/define-team';
 
+/** Hồng của logo trên áo đen */
+const PINK = '#FF006E';
+
 /**
  * Đội GaaP
  *
@@ -34,9 +37,9 @@ export default defineTeam({
 
   designs: [
     {
-      id: 'blank',
-      name: 'Áo trơn',
-      description: 'Phôi áo thun cổ tròn không họa tiết — dùng để xem trước màu vải trước khi lên thiết kế.',
+      id: 'tre-trung-trang',
+      name: 'Trẻ Trung - Trắng',
+      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chim cánh cụt bụng phải, logo Zammy Verse sau lưng.',
       tags: ['Cổ tròn', 'Tay ngắn'],
       designColor: '#F4F5F7', // trắng
       views: {
@@ -47,7 +50,7 @@ export default defineTeam({
             <>
               <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
               {/* chim cánh cụt: SVG trace từ ảnh 842×1162, giữ đúng tỉ lệ */}
-              <image href={asset('/teams/gaap/penguin.svg')} x="90" y="214" width="134" height="185" />
+              <image href={asset('/teams/gaap/penguin.svg')} x="96" y="248" width="102" height="141" />
             </>
           ),
         },
@@ -56,6 +59,28 @@ export default defineTeam({
           overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
         },
         // shoulder: { template: 'sleeve' },  // mẫu nào có thiết kế ở vai thì khai báo thêm
+      },
+    },
+    {
+      id: 'tre-trung-den',
+      name: 'Trẻ Trung - Đen',
+      description: 'Bản áo đen của Trẻ Trung — logo GaaP và Zammy Verse in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+      tags: ['Cổ tròn', 'Tay ngắn'],
+      designColor: '#1E2126', // đen
+      views: {
+        front: {
+          template: 'tshirt-front',
+          overlay: (
+            <>
+              <GaapLogo ink={PINK} paper="none" transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
+              <image href={asset('/teams/gaap/penguin.svg')} x="96" y="248" width="102" height="141" />
+            </>
+          ),
+        },
+        back: {
+          template: 'tshirt-back',
+          overlay: <ZammyVerse ink={PINK} paper="none" transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+        },
       },
     },
   ],

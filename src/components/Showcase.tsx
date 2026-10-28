@@ -61,7 +61,7 @@ function ShowcaseView({ teamId, designId, initialColor }: Props & { initialColor
       <div className="app-shell" inert={!!openView}>
         <Topbar team={team} />
         <main className="layout">
-          <DesignSidebar team={team} activeId={design?.id} color={color} />
+          <DesignSidebar team={team} activeId={design?.id} />
           {design ? (
             <DesignStage
               team={team}
