@@ -1,3 +1,4 @@
+import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { defineTeam } from '@/lib/define-team';
 
 /**
@@ -38,7 +39,10 @@ export default defineTeam({
       defaultColor: '#1F3A68',
       views: {
         front: { template: 'tshirt-front' },
-        back: { template: 'tshirt-back' },
+        back: {
+          template: 'tshirt-back',
+          overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+        },
         // shoulder: { template: 'sleeve' },  // mẫu nào có thiết kế ở vai thì khai báo thêm
       },
     },
