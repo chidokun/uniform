@@ -34,7 +34,12 @@ export interface Design {
   tags?: string[];
   /** Bảng màu riêng của mẫu (mặc định dùng palette của đội) */
   colors?: ColorOption[];
-  /** Màu chọn sẵn (mặc định là màu đầu tiên của bảng màu) */
+  /**
+   * Màu gốc của mẫu (màu áo thật khi in). Bảng màu được chia 2 nhóm: màu của mẫu
+   * và các màu còn lại để người xem thử. Nếu không có trong bảng màu sẽ được thêm vào.
+   */
+  designColor?: string;
+  /** Màu chọn sẵn (mặc định là màu của mẫu, không có thì màu đầu tiên của bảng màu) */
   defaultColor?: string;
   /** Mặt nào không khai báo thì không hiển thị */
   views: {

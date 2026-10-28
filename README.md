@@ -69,7 +69,8 @@ Thêm một object vào `designs` trong `src/data/teams/<đội>.tsx`:
   name: 'Classic số 10',
   description: 'Logo ngực trái, số lớn sau lưng.',
   tags: ['Mùa 2026'],
-  defaultColor: '#2F80ED',          // tuỳ chọn, mặc định = màu đầu tiên của bảng màu
+  designColor: '#F4F5F7',           // tuỳ chọn, màu gốc của mẫu — tách riêng, các màu còn lại để xem trước
+  defaultColor: '#2F80ED',          // tuỳ chọn, mặc định = designColor, không có thì màu đầu tiên của bảng màu
   colors: [ ... ],                  // tuỳ chọn, mặc định = palette của đội
   views: {
     front: {

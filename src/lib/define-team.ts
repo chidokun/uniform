@@ -26,6 +26,7 @@ export function defineTeam(team: Team): Team {
       return {
         ...design,
         colors: design.colors && normalizePalette(design.colors, `mẫu ${design.id}`),
+        designColor: normalizeHex(design.designColor) ?? undefined,
         defaultColor: normalizeHex(design.defaultColor) ?? undefined,
       };
     }),

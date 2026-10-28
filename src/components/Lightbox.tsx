@@ -211,8 +211,8 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
         </div>
 
         <footer className="lb-footer">
-          <ColorSwatches colors={colors} value={color} onChange={onColorChange} />
-          <ColorCurrent colors={colors} value={color} />
+          <ColorSwatches colors={colors} value={color} onChange={onColorChange} designColor={design.designColor} />
+          <ColorCurrent colors={colors} value={color} designColor={design.designColor} />
           <span className="lb-hint">Nhấn vào áo để phóng to · ← → đổi mặt · Esc để đóng</span>
         </footer>
       </div>

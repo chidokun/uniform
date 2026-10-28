@@ -895,6 +895,34 @@ button, select { font: inherit; color: inherit; }
 
 .swatches { display: flex; flex-wrap: wrap; gap: 14px; }
 
+/* Màu của mẫu | các màu còn lại để xem trước */
+.swatches--grouped { flex-wrap: nowrap; gap: 0; align-items: stretch; }
+.swatch-group { display: flex; flex: 1 1 0; flex-direction: column; gap: 10px; min-width: 0; }
+.swatch-group--design { flex: none; padding-right: 22px; margin-right: 22px; border-right: 1px solid var(--edge); }
+.swatch-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.swatch-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.color-kind {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
+}
+
+.color-kind.is-design {
+  color: var(--accent-text);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
 /* Hạt màu lỏng */
 .swatch {
   position: relative;
@@ -1163,6 +1191,10 @@ button, select { font: inherit; color: inherit; }
 .lb-footer .swatches { gap: 10px; padding: 4px; }
 .lb-footer .swatch { width: 44px; height: 44px; }
 .lb-footer .swatch-dot { width: 32px; height: 32px; }
+.lb-footer .swatch-group { flex: none; }
+.lb-footer .swatch-group-label { display: none; }
+.lb-footer .swatch-group--design { padding-right: 12px; margin-right: 12px; }
+.lb-footer .swatch-row { gap: 10px; }
 .lb-hint { font-size: 12px; color: var(--muted); }
 
 /* ==========================================================================
@@ -1192,10 +1224,12 @@ button, select { font: inherit; color: inherit; }
   .team-picker select { min-width: 60px; }
   .icon-btn { width: 44px; height: 44px; }
   .views { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .swatches { gap: 10px; }
+  .swatches, .swatch-row { gap: 10px; }
   .swatch { width: 46px; height: 46px; }
   .swatch-dot { width: 34px; height: 34px; }
   .color-panel { padding: 16px 14px 18px; }
+  .color-panel .swatches--grouped { flex-direction: column; gap: 14px; }
+  .color-panel .swatch-group--design { padding: 0 0 14px; margin: 0; border-right: 0; border-bottom: 1px solid var(--edge); }
 }
 
 @media (max-width: 420px) {
@@ -1222,6 +1256,7 @@ button, select { font: inherit; color: inherit; }
     scrollbar-width: none;
   }
   .lb-footer .swatch { flex: none; }
+  .lb-footer .swatch-row { flex-wrap: nowrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {

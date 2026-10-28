@@ -38,7 +38,7 @@ export default defineTeam({
       name: 'Áo trơn',
       description: 'Phôi áo thun cổ tròn không họa tiết — dùng để xem trước màu vải trước khi lên thiết kế.',
       tags: ['Cổ tròn', 'Tay ngắn'],
-      defaultColor: '#1F3A68',
+      designColor: '#F4F5F7', // trắng
       views: {
         front: {
           template: 'tshirt-front',

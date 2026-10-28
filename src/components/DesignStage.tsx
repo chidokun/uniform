@@ -84,9 +84,9 @@ export function DesignStage({ team, design, color, onColorChange, onOpenView }: 
       <section className="color-panel glass" aria-label="Chọn màu áo">
         <div className="color-head">
           <h3>Màu áo</h3>
-          <ColorCurrent colors={colors} value={color} />
+          <ColorCurrent colors={colors} value={color} designColor={design.designColor} />
         </div>
-        <ColorSwatches colors={colors} value={color} onChange={onColorChange} />
+        <ColorSwatches colors={colors} value={color} onChange={onColorChange} designColor={design.designColor} />
       </section>
     </section>
   );
