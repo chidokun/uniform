@@ -1,3 +1,4 @@
+import { GaapLogo } from '@/data/artwork/gaap';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { defineTeam } from '@/lib/define-team';
 
@@ -38,7 +39,11 @@ export default defineTeam({
       tags: ['Cổ tròn', 'Tay ngắn'],
       defaultColor: '#1F3A68',
       views: {
-        front: { template: 'tshirt-front' },
+        front: {
+          template: 'tshirt-front',
+          // ngực trái người mặc = bên phải khi nhìn mặt trước
+          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
+        },
         back: {
           template: 'tshirt-back',
           overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
