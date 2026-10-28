@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { GlassLight } from '@/components/GlassLight';
+import { SkyBackdrop } from '@/components/SkyBackdrop';
 import './globals.css';
 
 const font = Be_Vietnam_Pro({
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <GlassFilters />
         <GlassLight />
+        <SkyBackdrop />
         {children}
       </body>
     </html>

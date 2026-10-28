@@ -364,20 +364,32 @@ button, select { font: inherit; color: inherit; }
 
 /* ---------- sky ---------- */
 
-/* gradient trời hiện trong lúc video đang tải */
-:root[data-bg="sky"] .aurora {
+/* trời + video nằm ở .sky-backdrop (layout gốc) để không phát lại khi đổi mẫu; .aurora chỉ giữ đèn & hạt nhiễu */
+.sky-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+  /* gradient trời hiện trong lúc video đang tải */
   background: linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
 }
 
-:root[data-bg="sky"] .aurora span { display: none; }
-
-.aurora-video {
-  position: absolute;
-  inset: 0;
+.sky-backdrop video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: var(--sky-filter);
+}
+
+:root[data-bg="sky"] .sky-backdrop { display: block; }
+:root[data-bg="sky"] .aurora { background: transparent; }
+:root[data-bg="sky"] .aurora span { display: none; }
+
+/* lightbox toàn màn hình che mất .sky-backdrop — dùng gradient trời */
+:root[data-bg="sky"] .lightbox > .aurora {
+  background: linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
 }
 
 /* ==========================================================================

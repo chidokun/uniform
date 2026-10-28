@@ -1,4 +1,5 @@
 import { GaapLogo } from '@/data/artwork/gaap';
+import { TiltedPenguin } from '@/data/artwork/tilted-penguin';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
 import { defineTeam } from '@/lib/define-team';
@@ -80,6 +81,47 @@ export default defineTeam({
         back: {
           template: 'tshirt-back',
           overlay: <ZammyVerse ink={PINK} paper="none" transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+        },
+      },
+    },
+    {
+      id: 'canh-cut-trang',
+      name: 'Cánh Cụt - Trắng',
+      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D nghiêng ló nửa người từ gấu áo bên phải, logo Zammy Verse sau lưng.',
+      tags: ['Cổ tròn', 'Tay ngắn'],
+      designColor: '#F4F5F7', // trắng
+      views: {
+        front: {
+          template: 'tshirt-front',
+          overlay: (
+            <>
+              <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
+              {/* sát gấu áo: dáng áo cắt phần dưới thắt lưng (và bàn chân) */}
+              <TiltedPenguin transform="translate(140 418)" />
+            </>
+          ),
+        },
+        back: {
+          template: 'tshirt-back',
+          overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+        },
+      },
+    },
+    {
+      id: 'nghiem-tuc-trang',
+      name: 'Nghiêm Túc - Trắng',
+      description: 'Áo thun cổ tròn trắng — logo Zammy Verse ngực trái, chim cánh cụt 3D đứng thẳng giữa lưng.',
+      tags: ['Cổ tròn', 'Tay ngắn'],
+      designColor: '#F4F5F7', // trắng
+      views: {
+        front: {
+          template: 'tshirt-front',
+          overlay: <ZammyVerse transform="translate(256 128) scale(.34) translate(-95.5 -56)" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          // ảnh 1323×1538 (viewBox penguin-3d.svg), giữ đúng tỉ lệ
+          overlay: <image href={asset('/teams/gaap/penguin-3d.svg')} x="128" y="110" width="144" height="167.4" />,
         },
       },
     },
