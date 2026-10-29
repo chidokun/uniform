@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { Showcase } from '@/components/Showcase';
 import { designHref, getTeam, getTeams } from '@/lib/catalog';
+import { SITE_OPEN_GRAPH, openGraphImages } from '@/lib/site';
 
 type Params = Promise<{ teamId: string }>;
 
@@ -13,7 +14,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const team = getTeam((await params).teamId);
-  return { title: team?.name };
+  if (!team) return {};
+  const title = `Đồng phục đội ${team.name}`;
+  const description = `${team.designs.length} mẫu áo đồng phục của đội ${team.name}`;
+  return {
+    title: team.name,
+    description,
+    openGraph: { ...SITE_OPEN_GRAPH, title, description, images: openGraphImages(`/${team.id}/og.png`, title) },
+  };
 }
 
 /** /<đội> → mẫu đầu tiên của đội */

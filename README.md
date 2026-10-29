@@ -137,7 +137,8 @@ Nút bảng màu trên thanh trên đổi hình nền; lựa chọn lưu trong t
 
 | id | Mô tả |
 |---|---|
-| `ambient` (mặc định) | Studio trung tính, ánh theo màu áo đang chọn |
+| `sky` (mặc định) | Mây trôi trên trời xanh |
+| `ambient` | Studio trung tính, ánh theo màu áo đang chọn |
 | `studio` | Trung tính, đèn rọi từ trên + tối viền |
 | `mono` | Đơn sắc theo `accent` của đội |
 | `pitch` | Mặt sân cỏ, vạch sân, đèn sân vận động |
@@ -145,7 +146,18 @@ Nút bảng màu trên thanh trên đổi hình nền; lựa chọn lưu trong t
 Thêm kiểu nền mới:
 1. Khai báo trong `BACKGROUNDS` ở `src/components/BackgroundPicker.tsx` (phần tử đầu tiên là mặc định).
 2. Viết CSS `:root[data-bg="<id>"] .aurora { … }` và ảnh thu nhỏ `.bg-thumb--<id>` trong `globals.css`.
-3. Thêm `<id>` vào biểu thức `/^(ambient|studio|mono|pitch)$/` của `BOOT_SCRIPT` trong `src/app/layout.tsx`.
+3. Thêm `<id>` vào biểu thức `/^(sky|ambient|studio|mono|pitch)$/` của `applyStoredPrefs` trong `src/lib/boot.ts`.
+
+## Ảnh xem trước khi share link (og:image)
+
+Dựng lúc build bằng `next/og`, xuất thành file PNG tĩnh:
+
+- `/og.png` — trang chủ (`src/app/og.png/route.tsx`)
+- `/<đội>/og.png` — trang đội và mọi trang mẫu của đội (`src/app/[teamId]/og.png/route.tsx`)
+
+Ảnh đội tự lấy tên, màu nhấn, bảng màu, màu các mẫu và logo (`logo` của đội, chưa khai báo thì
+`public/teams/<id>/logo.svg`). Font Be Vietnam Pro được tải từ Google Fonts khi build nên máy build cần mạng.
+URL tuyệt đối của ảnh ghép từ biến `SITE_URL` (workflow deploy tự truyền vào).
 
 ## Xem toàn màn hình
 

@@ -39,6 +39,8 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # URL tuyệt đối cho og:image (ảnh xem trước khi share link)
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
 
       - uses: actions/upload-pages-artifact@v4
         with:

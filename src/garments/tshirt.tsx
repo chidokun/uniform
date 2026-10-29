@@ -3,7 +3,7 @@ import { Garment, type GarmentProps } from './Garment';
 /* Áo thun cổ tròn — mặt trước & mặt sau dùng chung dáng thân */
 
 /* Dáng boxy: cổ rộng, vai xuôi, tay ngắn loe, thân suông gần như thẳng, gấu phẳng */
-const BODY =
+export const TSHIRT_BODY =
   'M147,28 C170,44 230,44 253,28 L310,54 Q321.5,60 328,71 L390,183 L324,226 L322,230 ' +
   'L329,422 Q200,425 71,422 L78,230 L76,226 L10,183 L72,71 Q78.5,60 90,54 Z';
 const GROUND = { cx: 200, cy: 436, rx: 140, ry: 9 };
@@ -25,7 +25,7 @@ const SEAMS = (
   </>
 );
 
-const FRONT_NECK = 'M147,28 C170,44 230,44 253,28 C244,76 156,76 147,28 Z';
+export const FRONT_NECK = 'M147,28 C170,44 230,44 253,28 C244,76 156,76 147,28 Z';
 const FRONT_COLLAR = 'M140,26 C150,86 250,86 260,26 L253,28 C244,76 156,76 147,28 Z';
 const BACK_COLLAR = 'M147,28 C170,44 230,44 253,28 L261,31 C236,56 164,56 139,31 Z';
 
@@ -33,7 +33,7 @@ export function TshirtFront(props: GarmentProps) {
   return (
     <Garment
       {...props}
-      body={BODY}
+      body={TSHIRT_BODY}
       ground={GROUND}
       folds={
         <>
@@ -65,7 +65,7 @@ export function TshirtBack(props: GarmentProps) {
   return (
     <Garment
       {...props}
-      body={BODY}
+      body={TSHIRT_BODY}
       ground={GROUND}
       folds={
         <>

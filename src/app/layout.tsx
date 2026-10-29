@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { GlassLight } from '@/components/GlassLight';
+import { PrefsBoot } from '@/components/PrefsBoot';
 import { SkyBackdrop } from '@/components/SkyBackdrop';
+import { BOOT_SCRIPT } from '@/lib/boot';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_OPEN_GRAPH, SITE_URL, openGraphImages } from '@/lib/site';
 import './globals.css';
 
 const font = Be_Vietnam_Pro({
@@ -13,16 +16,17 @@ const font = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'Team Uniform', template: '%s · Team Uniform' },
-  description: 'Showcase mẫu áo đồng phục đội',
+  metadataBase: SITE_URL,
+  title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    ...SITE_OPEN_GRAPH,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: openGraphImages('/og.png', `${SITE_NAME} — ${SITE_DESCRIPTION}`),
+  },
+  twitter: { card: 'summary_large_image' },
 };
-
-/**
- * Chạy trước khi vẽ trang:
- * - áp dụng theme và hình nền đã lưu (chưa chọn thì dùng nền mặc định "sky"), tránh nháy
- * - bật khúc xạ kính (SVG filter trên backdrop) chỉ với Chromium — trình duyệt khác giữ kính mờ thường
- */
-const BOOT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('tu-theme');if(t==='light'||t==='dark')d.dataset.theme=t;var g=localStorage.getItem('tu-bg');if(/^(sky|ambient|studio|mono|pitch)$/.test(g))d.dataset.bg=g}catch(e){}if(!d.dataset.bg)d.dataset.bg='sky';var b=navigator.userAgentData&&navigator.userAgentData.brands;if(b&&b.some(function(x){return /Chrom/.test(x.brand)}))d.dataset.refract='on'})()`;
 
 /** Bản đồ lệch cho hiệu ứng khúc xạ của .glass--refract */
 function GlassFilters() {
@@ -44,6 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
       </head>
       <body>
+        <PrefsBoot />
         <GlassFilters />
         <GlassLight />
         <SkyBackdrop />

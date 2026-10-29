@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Showcase } from '@/components/Showcase';
 import { getDesign, getTeam, getTeams } from '@/lib/catalog';
+import { SITE_OPEN_GRAPH, openGraphImages } from '@/lib/site';
 
 type Params = Promise<{ teamId: string; designId: string }>;
 
@@ -20,7 +21,12 @@ function lookup(teamId: string, designId: string) {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { teamId, designId } = await params;
   const found = lookup(teamId, designId);
-  return found ? { title: `${found.design.name} — ${found.team.name}`, description: found.design.description } : {};
+  if (!found) return {};
+  const title = `${found.design.name} — ${found.team.name}`;
+  const { description } = found.design;
+  // ảnh xem trước dùng ảnh của đội
+  const images = openGraphImages(`/${teamId}/og.png`, `Đồng phục đội ${found.team.name}`);
+  return { title, description, openGraph: { ...SITE_OPEN_GRAPH, title, description, images } };
 }
 
 export default async function DesignPage({ params }: { params: Params }) {
