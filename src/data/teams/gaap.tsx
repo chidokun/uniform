@@ -138,5 +138,29 @@ export default defineTeam({
         },
       },
     },
+    {
+      id: 'trung-tre',
+      name: { vi: 'Trủng Tre', ko: '춘청' },
+      description: {
+        vi: 'Trẻ Trung đảo mặt trên áo trắng — mặt trước in lớn cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse, sau lưng là chữ GaaP nhỏ có cánh cụt quàng khăn sau chữ P, căn giữa; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+        ko: '청춘의 앞뒤를 바꾼 화이트 버전 — 앞면에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄을 크게, 등 가운데에는 P 뒤로 목도리를 두른 펭귄이 숨은 작은 GaaP 로고; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+      },
+      tags: TSHIRT_TAGS,
+      designColor: '#F4F5F7', // trắng
+      views: {
+        front: {
+          template: 'tshirt-front',
+          // cụm cánh cụt + chữ cùng cỡ với mặt sau của Trẻ Trung, căn giữa tại (200 170): bo cổ trước sâu hơn
+          // bo cổ sau ~20 nên hạ xuống 20 để đỉnh đầu cánh cụt vẫn cách bo cổ ~30
+          overlay: <image href={asset('/teams/gaap/zammyverse-penguin.svg')} x="113.96" y="90.35" width="175.5" height="175.5" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          // logo GaaP + cánh cụt cùng cỡ và độ cao với ngực trái của Trẻ Trung, căn giữa theo phần có nét
+          // (viewBox 1400×580, phần có nét: x 6.6…90.9% → tâm 48.7%)
+          overlay: <image href={asset('/teams/gaap/gaap-penguin.svg')} x="156.16" y="109.35" width="90" height="37.3" />,
+        },
+      },
+    },
   ],
 });
