@@ -1,6 +1,6 @@
 import { GaapLogo } from '@/data/artwork/gaap';
 import { JemiBusLogo } from '@/data/artwork/jemi-bus';
-import { TiltedPenguin } from '@/data/artwork/tilted-penguin';
+import { PeekingPenguin } from '@/data/artwork/peeking-penguin';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
 import { defineTeam } from '@/lib/define-team';
@@ -86,7 +86,7 @@ export default defineTeam({
     {
       id: 'canh-cut-trang',
       name: 'Cánh Cụt - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D nghiêng ló nửa người từ gấu áo bên phải, logo chữ Hàn 제미 / 버스 in hồng #FF006E sau lưng.',
+      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D vẫy tay ló nửa người từ gấu áo bên phải, logo chữ Hàn 제미 / 버스 in hồng #FF006E sau lưng.',
       tags: ['Cổ tròn', 'Tay ngắn'],
       designColor: '#F4F5F7', // trắng
       views: {
@@ -95,8 +95,8 @@ export default defineTeam({
           overlay: (
             <>
               <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
-              {/* sát gấu áo: dáng áo cắt phần dưới thắt lưng (và bàn chân) */}
-              <TiltedPenguin transform="translate(112 418) scale(1.4)" />
+              {/* sát gấu áo: dáng áo cắt phần dưới thắt lưng (và bàn chân); x đủ xa sườn áo để không cụt tay đang vẫy */}
+              <PeekingPenguin transform="translate(146 418) scale(1.4)" />
             </>
           ),
         },
