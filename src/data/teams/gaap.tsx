@@ -43,7 +43,7 @@ export default defineTeam({
   designs: [
     {
       id: 'tre-trung-trang',
-      name: { vi: 'Trẻ Trung - Trắng', ko: '청춘 - 화이트' },
+      name: { vi: 'Tươi Trẻ', ko: '풋풋' },
       description: {
         vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chim cánh cụt bụng phải, logo Zammy Verse sau lưng.',
         ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 배 부분에 펭귄, 등에 Zammy Verse 로고.',
@@ -71,10 +71,10 @@ export default defineTeam({
     },
     {
       id: 'tre-trung-den',
-      name: { vi: 'Trẻ Trung - Đen', ko: '청춘 - 블랙' },
+      name: { vi: 'Trẻ Trung', ko: '청춘' },
       description: {
-        vi: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
-        ko: '청춘의 블랙 버전 — 왼쪽 가슴에는 P 뒤로 목도리를 두른 펭귄이 숨은 GaaP 로고, 등에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 P 뒤로 목도리를 두른 펭귄이 숨은 GaaP 로고, 등에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
@@ -94,7 +94,7 @@ export default defineTeam({
     },
     {
       id: 'canh-cut-trang',
-      name: { vi: 'Cánh Cụt - Trắng', ko: '펭귄 - 화이트' },
+      name: { vi: 'Cánh Cụt', ko: '펭귄' },
       description: {
         vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D vẫy tay ló nửa người từ gấu áo bên phải, logo chữ Hàn 재미 / 버스 in hồng #FF006E sau lưng.',
         ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 밑단에서 상반신을 내밀고 손을 흔드는 3D 펭귄, 등에는 핑크 #FF006E로 인쇄한 한글 로고 재미 / 버스.',
@@ -120,7 +120,7 @@ export default defineTeam({
     },
     {
       id: 'cot-nha-den',
-      name: { vi: 'Cợt Nhã - Đen', ko: '장난꾸러기 - 블랙' },
+      name: { vi: 'Cợt Nhã', ko: '장난꾸러기' },
       description: {
         vi: 'Áo đen in hồng #FF006E — logo Zammy Verse ngực trái, logo chữ Hàn 재미 / 버스 kiểu sticker sau lưng, mặt chữ để trống lộ màu áo.',
         ko: '핑크 #FF006E로 인쇄한 블랙 티셔츠 — 왼쪽 가슴에 Zammy Verse 로고, 등에는 스티커 스타일의 한글 로고 재미 / 버스, 글자 안쪽은 비워 셔츠 색이 드러납니다.',
