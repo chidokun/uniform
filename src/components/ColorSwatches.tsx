@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from 'react';
 import { inkOf, normalizeHex } from '@/lib/color';
+import { useI18n } from '@/lib/locale';
 import type { ColorOption } from '@/types/uniform';
 import { CheckIcon } from './icons';
 
@@ -16,6 +17,7 @@ interface Props {
 const swatchStyle = (hex: string) => ({ '--c': hex, '--ink': inkOf(hex) }) as CSSProperties;
 
 export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
+  const { t, tx } = useI18n();
   const isPreset = colors.some((c) => c.hex === value);
   const own = colors.filter((c) => c.hex === designColor);
   const others = colors.filter((c) => c.hex !== designColor);
@@ -28,8 +30,8 @@ export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
         type="button"
         role="radio"
         aria-checked={active}
-        aria-label={c.name}
-        title={c.name}
+        aria-label={tx(c.name)}
+        title={tx(c.name)}
         className={`swatch${active ? ' is-active' : ''}`}
         style={swatchStyle(c.hex)}
         onClick={() => onChange(c.hex)}
@@ -43,12 +45,12 @@ export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
   const custom = (
     <label
       className={`swatch swatch--custom${isPreset ? '' : ' is-active'}`}
-      title="Màu tùy chỉnh"
+      title={t.customColor}
       style={isPreset ? undefined : swatchStyle(value)}
     >
       <input
         type="color"
-        aria-label="Chọn màu tùy chỉnh"
+        aria-label={t.chooseCustomColor}
         value={value.toLowerCase()}
         onChange={(e) => {
           const hex = normalizeHex(e.target.value);
@@ -62,7 +64,7 @@ export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
 
   if (!own.length) {
     return (
-      <div className="swatches" role="radiogroup" aria-label="Màu áo">
+      <div className="swatches" role="radiogroup" aria-label={t.shirtColor}>
         {colors.map(swatch)}
         {custom}
       </div>
@@ -70,13 +72,13 @@ export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
   }
 
   return (
-    <div className="swatches swatches--grouped" role="radiogroup" aria-label="Màu áo">
-      <div className="swatch-group swatch-group--design" role="group" aria-label="Màu của mẫu">
-        <span className="swatch-group-label">Màu của mẫu</span>
+    <div className="swatches swatches--grouped" role="radiogroup" aria-label={t.shirtColor}>
+      <div className="swatch-group swatch-group--design" role="group" aria-label={t.designColors}>
+        <span className="swatch-group-label">{t.designColors}</span>
         <div className="swatch-row">{own.map(swatch)}</div>
       </div>
-      <div className="swatch-group" role="group" aria-label="Xem trước màu khác">
-        <span className="swatch-group-label">Xem trước màu khác</span>
+      <div className="swatch-group" role="group" aria-label={t.previewOtherColors}>
+        <span className="swatch-group-label">{t.previewOtherColors}</span>
         <div className="swatch-row">
           {others.map(swatch)}
           {custom}
@@ -87,14 +89,15 @@ export function ColorSwatches({ colors, value, onChange, designColor }: Props) {
 }
 
 export function ColorCurrent({ colors, value, designColor }: { colors: ColorOption[]; value: string; designColor?: string }) {
+  const { t, tx } = useI18n();
   const preset = colors.find((c) => c.hex === value);
   return (
     <span className="color-current glass glass--refract">
       <i />
-      <span>{preset ? preset.name : 'Tùy chỉnh'}</span>
+      <span>{preset ? tx(preset.name) : t.custom}</span>
       {designColor && (
         <small className={`color-kind${value === designColor ? ' is-design' : ''}`}>
-          {value === designColor ? 'Màu mẫu' : 'Xem trước'}
+          {value === designColor ? t.designColor : t.preview}
         </small>
       )}
       <code>{value}</code>

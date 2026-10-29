@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react';
 import type { TemplateName } from '@/garments';
+import type { Text } from '@/lib/i18n';
 
 export interface ColorOption {
-  name: string;
+  name: Text;
   /** Mã hex, vd "#1F3A68" */
   hex: string;
 }
@@ -29,9 +30,10 @@ export type DesignView = TemplateView | ImageView;
 export interface Design {
   /** Dùng trên URL, không trùng trong đội */
   id: string;
-  name: string;
-  description?: string;
-  tags?: string[];
+  /** Chuỗi thường hoặc bản dịch theo ngôn ngữ, vd `{ vi: 'Trẻ Trung', ko: '청춘' }` */
+  name: Text;
+  description?: Text;
+  tags?: Text[];
   /** Bảng màu riêng của mẫu (mặc định dùng palette của đội) */
   colors?: ColorOption[];
   /**

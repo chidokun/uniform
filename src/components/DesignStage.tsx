@@ -2,6 +2,7 @@
 
 import { useRef, type CSSProperties } from 'react';
 import { colorsOf, viewsOf } from '@/lib/catalog';
+import { useI18n } from '@/lib/locale';
 import type { Design, Team, ViewKey } from '@/types/uniform';
 import { ColorCurrent, ColorSwatches } from './ColorSwatches';
 import { GarmentView } from './GarmentView';
@@ -18,22 +19,23 @@ interface Props {
   onOpenView: (key: ViewKey, trigger: HTMLElement | null) => void;
 }
 
-function ViewCard({ index, label, chip, design, viewKey, onOpen }: {
+function ViewCard({ index, chip, design, viewKey, onOpen }: {
   index: number;
-  label: string;
   chip: string;
   design: Design;
   viewKey: ViewKey;
   onOpen: (trigger: HTMLElement | null) => void;
 }) {
   const expandRef = useRef<HTMLButtonElement>(null);
+  const { t, tx } = useI18n();
+  const label = t.views[viewKey];
 
   return (
     <figure className="view-card glass" style={{ '--i': index } as CSSProperties}>
-      <div className="view-canvas well" title="Xem toàn màn hình" onClick={() => onOpen(expandRef.current)}>
+      <div className="view-canvas well" title={t.viewFullscreen} onClick={() => onOpen(expandRef.current)}>
         <Sparkles offset={index * 0.4} />
-        <GarmentView view={design.views[viewKey]!} label={`${design.name} — ${label}`} />
-        <button ref={expandRef} className="view-expand glass glass--refract" type="button" aria-label={`Xem ${label.toLowerCase()} toàn màn hình`}>
+        <GarmentView view={design.views[viewKey]!} label={`${tx(design.name)} — ${label}`} />
+        <button ref={expandRef} className="view-expand glass glass--refract" type="button" aria-label={t.viewSideFullscreen(label)}>
           <ExpandIcon />
         </button>
       </div>
@@ -49,21 +51,22 @@ export function DesignStage({ team, design, color, onColorChange, onOpenView }: 
   const index = team.designs.indexOf(design) + 1;
   const slots = viewsOf(design);
   const colors = colorsOf(design, team);
+  const { t, tx } = useI18n();
 
   return (
     <section className="stage glass" aria-live="polite">
       <header className="stage-head">
         <div className="stage-title">
-          <span className="eyebrow">{team.name} · Mẫu {String(index).padStart(2, '0')}</span>
-          <h1>{design.name}</h1>
-          {design.description && <p>{design.description}</p>}
+          <span className="eyebrow">{t.designEyebrow(team.name, index)}</span>
+          <h1>{tx(design.name)}</h1>
+          {design.description && <p>{tx(design.description)}</p>}
           {!!design.tags?.length && (
-            <div className="tags">{design.tags.map((t) => <span key={t} className="tag glass glass--refract">{t}</span>)}</div>
+            <div className="tags">{design.tags.map((tag) => <span key={tx(tag)} className="tag glass glass--refract">{tx(tag)}</span>)}</div>
           )}
         </div>
         <div className="team-badge glass glass--refract">
           <TeamLogo team={team} />
-          <span className="team-badge-text"><small>Đội</small><strong>{team.name}</strong></span>
+          <span className="team-badge-text"><small>{t.team}</small><strong>{team.name}</strong></span>
         </div>
       </header>
 
@@ -72,7 +75,6 @@ export function DesignStage({ team, design, color, onColorChange, onOpenView }: 
           <ViewCard
             key={slot.key}
             index={i}
-            label={slot.label}
             chip={slot.chip}
             design={design}
             viewKey={slot.key}
@@ -81,9 +83,9 @@ export function DesignStage({ team, design, color, onColorChange, onOpenView }: 
         ))}
       </div>
 
-      <section className="color-panel glass" aria-label="Chọn màu áo">
+      <section className="color-panel glass" aria-label={t.chooseShirtColor}>
         <div className="color-head">
-          <h3>Màu áo</h3>
+          <h3>{t.shirtColor}</h3>
           <ColorCurrent colors={colors} value={color} designColor={design.designColor} />
         </div>
         <ColorSwatches colors={colors} value={color} onChange={onColorChange} designColor={design.designColor} />

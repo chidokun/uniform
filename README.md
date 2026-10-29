@@ -93,6 +93,8 @@ Thêm một object vào `designs` trong `src/data/teams/<đội>.tsx`:
 - **image**: thay cho template nếu đã có ảnh thiết kế. Đặt ảnh trong `public/` rồi khai báo
   `front: { image: '/teams/gaap/classic/front.png' }`. Ảnh không đổi màu theo ô chọn màu.
 - Sidebar dùng mặt trước làm ảnh thu nhỏ.
+- **Tiếng Hàn**: `name`, `description`, `tags` và tên màu (`palette`, `colors`) nhận chuỗi thường hoặc bản dịch
+  `{ vi: 'Cổ tròn', ko: '라운드넥' }`; thiếu `ko` thì hiển thị tiếng Việt. Chữ giao diện nằm trong `src/lib/i18n.ts`.
 
 ## Thêm đội
 

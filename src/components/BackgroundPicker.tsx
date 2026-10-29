@@ -1,16 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useI18n } from '@/lib/locale';
 import { CheckIcon, PaletteIcon } from './icons';
+import { useMenuDismiss } from './useMenuDismiss';
 
-/** Kiểu nền — CSS tương ứng ở mục "Hình nền" trong globals.css. Phần tử đầu tiên là mặc định. */
-export const BACKGROUNDS = [
-  { id: 'sky', name: 'Bầu trời', desc: 'Mây trôi trên trời xanh' },
-  { id: 'ambient', name: 'Ambient', desc: 'Studio, ánh theo màu áo' },
-  { id: 'studio', name: 'Studio', desc: 'Trung tính, đèn rọi' },
-  { id: 'mono', name: 'Đơn sắc', desc: 'Tông màu của đội' },
-  { id: 'pitch', name: 'Sân cỏ', desc: 'Mặt sân & đèn sân vận động' },
-] as const;
+/**
+ * Kiểu nền — CSS tương ứng ở mục "Hình nền" trong globals.css. Phần tử đầu tiên là mặc định.
+ * Tên và mô tả theo ngôn ngữ ở `backgrounds` trong lib/i18n.ts.
+ */
+export const BACKGROUNDS = [{ id: 'sky' }, { id: 'ambient' }, { id: 'studio' }, { id: 'mono' }, { id: 'pitch' }] as const;
 
 type BackgroundId = (typeof BACKGROUNDS)[number]['id'];
 
@@ -26,24 +25,11 @@ export function BackgroundPicker() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<BackgroundId | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => setActive(currentBackground()), []);
 
-  useEffect(() => {
-    if (!open) return;
-    const onPointerDown = (e: PointerEvent) => {
-      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
-    document.addEventListener('pointerdown', onPointerDown);
-    window.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown);
-      window.removeEventListener('keydown', onKey);
-    };
-  }, [open]);
+  useMenuDismiss(rootRef, open, setOpen);
 
   const choose = (id: BackgroundId) => {
     document.documentElement.dataset.bg = id;
@@ -60,8 +46,8 @@ export function BackgroundPicker() {
       <button
         className="icon-btn glass glass--refract"
         type="button"
-        aria-label="Đổi hình nền"
-        title="Hình nền"
+        aria-label={t.changeBackground}
+        title={t.background}
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
@@ -70,8 +56,8 @@ export function BackgroundPicker() {
       </button>
 
       {open && (
-        <div className="bg-menu glass glass--strong" role="menu" aria-label="Hình nền">
-          <p className="bg-menu-title">Hình nền</p>
+        <div className="bg-menu glass glass--strong" role="menu" aria-label={t.background}>
+          <p className="bg-menu-title">{t.background}</p>
           {BACKGROUNDS.map((bg) => (
             <button
               key={bg.id}
@@ -83,8 +69,8 @@ export function BackgroundPicker() {
             >
               <span className={`bg-thumb bg-thumb--${bg.id}`} />
               <span className="bg-option-text">
-                <strong>{bg.name}</strong>
-                <small>{bg.desc}</small>
+                <strong>{t.backgrounds[bg.id].name}</strong>
+                <small>{t.backgrounds[bg.id].desc}</small>
               </span>
               <span className="bg-option-check"><CheckIcon /></span>
             </button>

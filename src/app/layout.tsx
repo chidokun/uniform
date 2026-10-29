@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Be_Vietnam_Pro } from 'next/font/google';
+import { Be_Vietnam_Pro, Noto_Sans_KR } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { GlassLight } from '@/components/GlassLight';
 import { PrefsBoot } from '@/components/PrefsBoot';
 import { SkyBackdrop } from '@/components/SkyBackdrop';
 import { BOOT_SCRIPT } from '@/lib/boot';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_OPEN_GRAPH, SITE_URL, openGraphImages } from '@/lib/site';
 import './globals.css';
 
@@ -13,6 +14,14 @@ const font = Be_Vietnam_Pro({
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
   display: 'swap',
+});
+
+/** Be Vietnam Pro không có chữ Hàn — trình duyệt lấy chữ Hàn từ font này (chỉ tải khi trang có chữ Hàn) */
+const fontKo = Noto_Sans_KR({
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-ko',
+  display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -43,7 +52,7 @@ function GlassFilters() {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi" className={font.variable} suppressHydrationWarning>
+    <html lang={DEFAULT_LOCALE} className={`${font.variable} ${fontKo.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
       </head>

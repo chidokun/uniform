@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { colorsOf, defaultColorOf, getDesign, getTeam } from '@/lib/catalog';
 import { normalizeHex, rgba, shirtVars } from '@/lib/color';
+import { useI18n } from '@/lib/locale';
 import type { ViewKey } from '@/types/uniform';
 import { Aurora } from './Aurora';
 import { DesignSidebar } from './DesignSidebar';
@@ -30,6 +31,7 @@ function ShowcaseView({ teamId, designId, initialColor }: Props & { initialColor
   );
   const [openView, setOpenView] = useState<ViewKey | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+  const { t } = useI18n();
 
   const setColor = (hex: string) => {
     setColorState(hex);
@@ -76,8 +78,8 @@ function ShowcaseView({ teamId, designId, initialColor }: Props & { initialColor
           ) : (
             <section className="stage glass">
               <div className="empty">
-                <strong>Chưa có mẫu thiết kế</strong>
-                <span>Thêm mẫu cho đội {team.name} trong src/data/teams/{team.id}.tsx</span>
+                <strong>{t.noDesigns}</strong>
+                <span>{t.addDesignsHint(team.name, `src/data/teams/${team.id}.tsx`)}</span>
               </div>
             </section>
           )}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Showcase } from '@/components/Showcase';
 import { getDesign, getTeam, getTeams } from '@/lib/catalog';
+import { tx } from '@/lib/i18n';
 import { SITE_OPEN_GRAPH, openGraphImages } from '@/lib/site';
 
 type Params = Promise<{ teamId: string; designId: string }>;
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { teamId, designId } = await params;
   const found = lookup(teamId, designId);
   if (!found) return {};
-  const title = `${found.design.name} — ${found.team.name}`;
-  const { description } = found.design;
+  // HTML tĩnh dựng bằng tiếng Việt — thẻ meta cũng vậy
+  const title = `${tx(found.design.name, 'vi')} — ${found.team.name}`;
+  const description = found.design.description && tx(found.design.description, 'vi');
   // ảnh xem trước dùng ảnh của đội
   const images = openGraphImages(`/${teamId}/og.png`, `Đồng phục đội ${found.team.name}`);
   return { title, description, openGraph: { ...SITE_OPEN_GRAPH, title, description, images } };

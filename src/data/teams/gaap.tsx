@@ -8,11 +8,14 @@ import { defineTeam } from '@/lib/define-team';
 /** Hồng của logo trên áo đen */
 const PINK = '#FF006E';
 
+const TSHIRT_TAGS = [{ vi: 'Cổ tròn', ko: '라운드넥' }, { vi: 'Tay ngắn', ko: '반팔' }];
+
 /**
  * Đội GaaP
  *
  * Thêm mẫu mới: thêm 1 object vào `designs` (mẫu đầu tiên được chọn sẵn).
  * Xem README.md để biết các tuỳ chọn của view (template / overlay / image).
+ * Chữ hiển thị (tên, mô tả, tag, tên màu) viết dạng `{ vi, ko }` để có bản tiếng Hàn.
  */
 export default defineTeam({
   id: 'gaap',
@@ -23,26 +26,29 @@ export default defineTeam({
   accent2: '#00B8FF',
 
   palette: [
-    { name: 'Trắng', hex: '#F4F5F7' },
-    { name: 'Đen', hex: '#1E2126' },
-    { name: 'Xanh navy', hex: '#1F3A68' },
-    { name: 'Xanh dương', hex: '#2F80ED' },
-    { name: 'Xanh ngọc', hex: '#14B8A6' },
-    { name: 'Xanh lá', hex: '#27AE60' },
-    { name: 'Vàng', hex: '#F2C94C' },
-    { name: 'Cam', hex: '#F2994A' },
-    { name: 'Đỏ', hex: '#E5484D' },
-    { name: 'Hồng', hex: '#F78FB3' },
-    { name: 'Tím', hex: '#7B61FF' },
-    { name: 'Xám', hex: '#9AA5B1' },
+    { name: { vi: 'Trắng', ko: '화이트' }, hex: '#F4F5F7' },
+    { name: { vi: 'Đen', ko: '블랙' }, hex: '#1E2126' },
+    { name: { vi: 'Xanh navy', ko: '네이비' }, hex: '#1F3A68' },
+    { name: { vi: 'Xanh dương', ko: '블루' }, hex: '#2F80ED' },
+    { name: { vi: 'Xanh ngọc', ko: '틸' }, hex: '#14B8A6' },
+    { name: { vi: 'Xanh lá', ko: '그린' }, hex: '#27AE60' },
+    { name: { vi: 'Vàng', ko: '옐로' }, hex: '#F2C94C' },
+    { name: { vi: 'Cam', ko: '오렌지' }, hex: '#F2994A' },
+    { name: { vi: 'Đỏ', ko: '레드' }, hex: '#E5484D' },
+    { name: { vi: 'Hồng', ko: '핑크' }, hex: '#F78FB3' },
+    { name: { vi: 'Tím', ko: '퍼플' }, hex: '#7B61FF' },
+    { name: { vi: 'Xám', ko: '그레이' }, hex: '#9AA5B1' },
   ],
 
   designs: [
     {
       id: 'tre-trung-trang',
-      name: 'Trẻ Trung - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chim cánh cụt bụng phải, logo Zammy Verse sau lưng.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
+      name: { vi: 'Trẻ Trung - Trắng', ko: '청춘 - 화이트' },
+      description: {
+        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chim cánh cụt bụng phải, logo Zammy Verse sau lưng.',
+        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 배 부분에 펭귄, 등에 Zammy Verse 로고.',
+      },
+      tags: TSHIRT_TAGS,
       designColor: '#F4F5F7', // trắng
       views: {
         front: {
@@ -65,9 +71,12 @@ export default defineTeam({
     },
     {
       id: 'tre-trung-den',
-      name: 'Trẻ Trung - Đen',
-      description: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
+      name: { vi: 'Trẻ Trung - Đen', ko: '청춘 - 블랙' },
+      description: {
+        vi: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+        ko: '청춘의 블랙 버전 — 왼쪽 가슴에는 P 뒤로 목도리를 두른 펭귄이 숨은 GaaP 로고, 등에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+      },
+      tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
       views: {
         front: {
@@ -85,9 +94,12 @@ export default defineTeam({
     },
     {
       id: 'canh-cut-trang',
-      name: 'Cánh Cụt - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D vẫy tay ló nửa người từ gấu áo bên phải, logo chữ Hàn 제미 / 버스 in hồng #FF006E sau lưng.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
+      name: { vi: 'Cánh Cụt - Trắng', ko: '펭귄 - 화이트' },
+      description: {
+        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D vẫy tay ló nửa người từ gấu áo bên phải, logo chữ Hàn 재미 / 버스 in hồng #FF006E sau lưng.',
+        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 밑단에서 상반신을 내밀고 손을 흔드는 3D 펭귄, 등에는 핑크 #FF006E로 인쇄한 한글 로고 재미 / 버스.',
+      },
+      tags: TSHIRT_TAGS,
       designColor: '#F4F5F7', // trắng
       views: {
         front: {
@@ -108,9 +120,12 @@ export default defineTeam({
     },
     {
       id: 'cot-nha-den',
-      name: 'Cợt Nhã - Đen',
-      description: 'Áo đen in hồng #FF006E — logo Zammy Verse ngực trái, logo chữ Hàn 제미 / 버스 kiểu sticker sau lưng, mặt chữ để trống lộ màu áo.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
+      name: { vi: 'Cợt Nhã - Đen', ko: '장난꾸러기 - 블랙' },
+      description: {
+        vi: 'Áo đen in hồng #FF006E — logo Zammy Verse ngực trái, logo chữ Hàn 재미 / 버스 kiểu sticker sau lưng, mặt chữ để trống lộ màu áo.',
+        ko: '핑크 #FF006E로 인쇄한 블랙 티셔츠 — 왼쪽 가슴에 Zammy Verse 로고, 등에는 스티커 스타일의 한글 로고 재미 / 버스, 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+      },
+      tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
       views: {
         front: {

@@ -4,6 +4,7 @@ import {
   useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type PointerEvent,
 } from 'react';
 import { viewsOf } from '@/lib/catalog';
+import { useI18n } from '@/lib/locale';
 import type { ColorOption, Design, Team, ViewKey } from '@/types/uniform';
 import { Aurora } from './Aurora';
 import { ColorCurrent, ColorSwatches } from './ColorSwatches';
@@ -42,8 +43,11 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
   const tabsRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState<CSSProperties>({ opacity: 0 });
 
+  const { t, tx } = useI18n();
   const slots = viewsOf(design);
   const slot = slots.find((s) => s.key === view) ?? slots[0];
+  const designName = tx(design.name);
+  const slotLabel = t.views[slot.key];
 
   // Viên kính trượt tới tab đang chọn (đo lại khi đổi tab hoặc đổi kích thước)
   useLayoutEffect(() => {
@@ -142,18 +146,18 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
 
   return (
     <div ref={rootRef} className="lightbox" role="dialog" aria-modal="true"
-         aria-label={`${design.name} — xem toàn màn hình`}>
+         aria-label={t.lightboxLabel(designName)}>
       <Aurora />
       <div className="lb-backdrop" />
       <div className="lb-panel glass">
         <header className="lb-bar">
           <div className="lb-title">
-            <span className="eyebrow">{team.name} · {design.name}</span>
-            <strong>{slot.label}</strong>
+            <span className="eyebrow">{team.name} · {designName}</span>
+            <strong>{slotLabel}</strong>
           </div>
 
           {slots.length > 1 && (
-            <div ref={tabsRef} className="lb-tabs glass" role="tablist" aria-label="Mặt áo">
+            <div ref={tabsRef} className="lb-tabs glass" role="tablist" aria-label={t.shirtSides}>
               <span className="lb-tab-indicator glass glass--refract glass--strong" style={indicator} aria-hidden="true" />
               {slots.map((s) => (
                 <button
@@ -165,7 +169,7 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
                   className={`lb-tab${s.key === view ? ' is-active' : ''}`}
                   onClick={() => goTo(s.key)}
                 >
-                  {s.label}
+                  {t.views[s.key]}
                 </button>
               ))}
             </div>
@@ -173,17 +177,17 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
 
           <div className="lb-actions">
             <button className="icon-btn glass glass--refract" type="button" onClick={toggleZoom} aria-pressed={zoomed}
-                    aria-label={zoomed ? 'Thu nhỏ' : 'Phóng to'} title={zoomed ? 'Thu nhỏ (Z)' : 'Phóng to (Z)'}>
+                    aria-label={zoomed ? t.zoomOut : t.zoomIn} title={`${zoomed ? t.zoomOut : t.zoomIn} (Z)`}>
               {zoomed ? <ZoomOutIcon /> : <ZoomInIcon />}
             </button>
             {canFullscreen && (
               <button className="icon-btn glass glass--refract" type="button" onClick={toggleFullscreen}
-                      aria-label={isFullscreen ? 'Thoát toàn màn hình' : 'Toàn màn hình trình duyệt'}
-                      title={isFullscreen ? 'Thoát toàn màn hình' : 'Toàn màn hình trình duyệt'}>
+                      aria-label={isFullscreen ? t.exitFullscreen : t.enterFullscreen}
+                      title={isFullscreen ? t.exitFullscreen : t.enterFullscreen}>
                 {isFullscreen ? <ExitFullscreenIcon /> : <FullscreenIcon />}
               </button>
             )}
-            <button className="icon-btn glass glass--refract" type="button" onClick={onClose} aria-label="Đóng" title="Đóng (Esc)" autoFocus>
+            <button className="icon-btn glass glass--refract" type="button" onClick={onClose} aria-label={t.close} title={`${t.close} (Esc)`} autoFocus>
               <CloseIcon />
             </button>
           </div>
@@ -191,7 +195,7 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
 
         <div className="lb-stage">
           {slots.length > 1 && (
-            <button className="icon-btn lb-nav glass glass--refract" type="button" onClick={() => step(-1)} aria-label="Mặt áo trước đó">
+            <button className="icon-btn lb-nav glass glass--refract" type="button" onClick={() => step(-1)} aria-label={t.prevSide}>
               <PrevIcon />
             </button>
           )}
@@ -199,12 +203,12 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
           <div className={`lb-canvas well${zoomed ? ' is-zoomed' : ''}`} {...canvasHandlers}>
             <Sparkles />
             <div ref={zoomRef} key={view} className="lb-zoom">
-              <GarmentView view={design.views[view]!} label={`${design.name} — ${slot.label}`} />
+              <GarmentView view={design.views[view]!} label={`${designName} — ${slotLabel}`} />
             </div>
           </div>
 
           {slots.length > 1 && (
-            <button className="icon-btn lb-nav glass glass--refract" type="button" onClick={() => step(1)} aria-label="Mặt áo tiếp theo">
+            <button className="icon-btn lb-nav glass glass--refract" type="button" onClick={() => step(1)} aria-label={t.nextSide}>
               <NextIcon />
             </button>
           )}
@@ -213,7 +217,7 @@ export function Lightbox({ team, design, view, onViewChange, colors, color, onCo
         <footer className="lb-footer">
           <ColorSwatches colors={colors} value={color} onChange={onColorChange} designColor={design.designColor} />
           <ColorCurrent colors={colors} value={color} designColor={design.designColor} />
-          <span className="lb-hint">Nhấn vào áo để phóng to · ← → đổi mặt · Esc để đóng</span>
+          <span className="lb-hint">{t.lightboxHint}</span>
         </footer>
       </div>
     </div>

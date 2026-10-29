@@ -1,12 +1,16 @@
+'use client';
+
 import Link from 'next/link';
+import { useI18n } from '@/lib/locale';
 
 export default function NotFound() {
+  const { t } = useI18n();
   return (
     <main className="layout layout--single">
       <section className="stage glass">
         <div className="empty">
-          <strong>Không tìm thấy đội hoặc mẫu thiết kế</strong>
-          <Link className="tag glass glass--refract" href="/">Về trang chủ</Link>
+          <strong>{t.notFound}</strong>
+          <Link className="tag glass glass--refract" href="/">{t.backHome}</Link>
         </div>
       </section>
     </main>

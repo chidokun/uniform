@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { designHref, getTeam, getTeams } from '@/lib/catalog';
+import { useI18n } from '@/lib/locale';
 import type { Team } from '@/types/uniform';
 import { BackgroundPicker } from './BackgroundPicker';
 import { ChevronDownIcon } from './icons';
+import { LanguagePicker } from './LanguagePicker';
 import { ThemeToggle } from './ThemeToggle';
 
 function BrandMark() {
@@ -30,22 +32,23 @@ function BrandMark() {
 
 export function Topbar({ team }: { team: Team }) {
   const router = useRouter();
+  const { t } = useI18n();
 
   return (
     <header className="topbar glass glass--refract">
-      <Link className="brand" href="/" aria-label="Team Uniform — trang chủ">
+      <Link className="brand" href="/" aria-label={t.homeLabel}>
         <BrandMark />
         <span className="brand-text">
           <strong>Team Uniform</strong>
-          <small>Showcase áo đội</small>
+          <small>{t.tagline}</small>
         </span>
       </Link>
 
       <div className="topbar-actions">
         <label className="team-picker glass glass--refract">
-          <span className="team-picker-label">Đội</span>
+          <span className="team-picker-label">{t.team}</span>
           <select
-            aria-label="Chọn đội"
+            aria-label={t.chooseTeam}
             value={team.id}
             onChange={(e) => {
               const next = getTeam(e.target.value);
@@ -56,6 +59,7 @@ export function Topbar({ team }: { team: Team }) {
           </select>
           <span className="team-picker-chevron"><ChevronDownIcon /></span>
         </label>
+        <LanguagePicker />
         <BackgroundPicker />
         <ThemeToggle />
       </div>

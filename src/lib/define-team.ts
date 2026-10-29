@@ -1,10 +1,11 @@
 import type { ColorOption, Team } from '@/types/uniform';
 import { normalizeHex } from './color';
+import { tx } from './i18n';
 
 function normalizePalette(colors: ColorOption[], owner: string): ColorOption[] {
   return colors.map((color) => {
     const hex = normalizeHex(color.hex);
-    if (!hex) throw new Error(`[team-uniform] Màu "${color.name}" của ${owner} có mã hex không hợp lệ: ${color.hex}`);
+    if (!hex) throw new Error(`[team-uniform] Màu "${tx(color.name, 'vi')}" của ${owner} có mã hex không hợp lệ: ${color.hex}`);
     return { ...color, hex };
   });
 }

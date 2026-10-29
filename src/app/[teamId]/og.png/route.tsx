@@ -1,5 +1,6 @@
 import { getTeam, getTeams } from '@/lib/catalog';
 import { rgba } from '@/lib/color';
+import { tx } from '@/lib/i18n';
 import { ShirtStack, Swatches, ogImage, shirtColors, teamLogo } from '@/lib/og';
 import { SITE_NAME } from '@/lib/site';
 
@@ -20,7 +21,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ teamId:
   const logo = await teamLogo(team);
   const accent2 = team.accent2 ?? team.accent;
   const heading = `Đồng phục đội ${team.name}`;
-  const names = team.designs.map((d) => d.name);
+  const names = team.designs.map((d) => tx(d.name, 'vi'));
   const summary = `${names.length} mẫu áo · ${names.slice(0, 3).join(', ')}${names.length > 3 ? '…' : ''}`;
 
   return ogImage(

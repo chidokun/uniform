@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/lib/locale';
 import { MoonIcon, SunIcon } from './icons';
 
 type Theme = 'light' | 'dark';
@@ -16,6 +17,7 @@ function currentTheme(): Theme {
 /** Theme lưu ở <html data-theme>; script trong layout áp dụng lựa chọn đã lưu trước khi vẽ trang. */
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     const sync = () => setTheme(currentTheme());
@@ -37,7 +39,7 @@ export function ThemeToggle() {
   };
 
   return (
-    <button className="icon-btn glass glass--refract" type="button" onClick={toggle} aria-label="Đổi giao diện sáng / tối">
+    <button className="icon-btn glass glass--refract" type="button" onClick={toggle} aria-label={t.toggleTheme} title={t.toggleTheme}>
       {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
     </button>
   );

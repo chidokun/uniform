@@ -1,11 +1,11 @@
 import { TEAMS } from '@/data/teams';
 import type { ColorOption, Design, Team, ViewKey } from '@/types/uniform';
 
-/** Các mặt áo có thể hiển thị, theo thứ tự. */
-export const VIEW_SLOTS: { key: ViewKey; label: string; chip: string }[] = [
-  { key: 'front', label: 'Mặt trước', chip: 'FRONT' },
-  { key: 'back', label: 'Mặt sau', chip: 'BACK' },
-  { key: 'shoulder', label: 'Vai', chip: 'SLEEVE' },
+/** Các mặt áo có thể hiển thị, theo thứ tự. Tên mặt áo theo ngôn ngữ ở `views` trong lib/i18n.ts. */
+export const VIEW_SLOTS: { key: ViewKey; chip: string }[] = [
+  { key: 'front', chip: 'FRONT' },
+  { key: 'back', chip: 'BACK' },
+  { key: 'shoulder', chip: 'SLEEVE' },
 ];
 
 export const getTeams = () => TEAMS;
@@ -18,7 +18,7 @@ export function colorsOf(design: Design, team: Team): ColorOption[] {
   const colors = design.colors ?? team.palette;
   const own = design.designColor;
   if (!own) return colors;
-  return [colors.find((c) => c.hex === own) ?? { name: 'Màu mẫu', hex: own }, ...colors.filter((c) => c.hex !== own)];
+  return [colors.find((c) => c.hex === own) ?? { name: { vi: 'Màu mẫu', ko: '디자인 색상' }, hex: own }, ...colors.filter((c) => c.hex !== own)];
 }
 
 export const defaultColorOf = (design: Design, team: Team) =>
