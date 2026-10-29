@@ -1,4 +1,6 @@
 import { GaapLogo } from '@/data/artwork/gaap';
+import { GapLamRoiLogo } from '@/data/artwork/gap-lam-roi';
+import { JemiBusLogo } from '@/data/artwork/jemi-bus';
 import { TiltedPenguin } from '@/data/artwork/tilted-penguin';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
@@ -122,6 +124,40 @@ export default defineTeam({
           template: 'tshirt-back',
           // ảnh 1323×1538 (viewBox penguin-3d.svg), giữ đúng tỉ lệ
           overlay: <image href={asset('/teams/gaap/penguin-3d.svg')} x="128" y="110" width="144" height="167.4" />,
+        },
+      },
+    },
+    {
+      id: 'cot-nha-den',
+      name: 'Cợt Nhã - Đen',
+      description: 'Áo đen in hồng #FF006E — logo Zammy Verse ngực trái, logo chữ Hàn 제미 / 버스 kiểu sticker sau lưng, mặt chữ để trống lộ màu áo.',
+      tags: ['Cổ tròn', 'Tay ngắn'],
+      designColor: '#1E2126', // đen
+      views: {
+        front: {
+          template: 'tshirt-front',
+          overlay: <ZammyVerse ink={PINK} paper="none" transform="translate(256 128) scale(.34) translate(-95.5 -56)" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          overlay: <JemiBusLogo ink={PINK} paper="none" transform="translate(200 165) scale(.52) translate(-108.5 -103.5)" />,
+        },
+      },
+    },
+    {
+      id: 'cot-nha-trang',
+      name: 'Cợt Nhã - Trắng',
+      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chữ GẤP / LẮM / RỒI!!! kiểu sticker như Zammy Verse sau lưng.',
+      tags: ['Cổ tròn', 'Tay ngắn'],
+      designColor: '#F4F5F7', // trắng
+      views: {
+        front: {
+          template: 'tshirt-front',
+          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          overlay: <GapLamRoiLogo transform="translate(200 200) scale(.33) translate(-23 -294.5)" />,
         },
       },
     },
