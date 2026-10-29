@@ -1,6 +1,5 @@
 import { GaapLogo } from '@/data/artwork/gaap';
 import { JemiBusLogo } from '@/data/artwork/jemi-bus';
-import { RunningPenguin } from '@/data/artwork/running-penguin';
 import { TiltedPenguin } from '@/data/artwork/tilted-penguin';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
@@ -67,18 +66,20 @@ export default defineTeam({
     {
       id: 'tre-trung-den',
       name: 'Trẻ Trung - Đen',
-      description: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP cạnh cánh cụt đang chạy, Zammy Verse sau lưng; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+      description: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
       tags: ['Cổ tròn', 'Tay ngắn'],
       designColor: '#1E2126', // đen
       views: {
         front: {
           template: 'tshirt-front',
-          // ngực trái: chữ GaaP + cánh cụt chạy gom thành một cụm (tạm bỏ vệt nhoè)
-          overlay: <RunningPenguin ink={PINK} paper="none" streaks={false} transform="translate(256 128) scale(.5) translate(-82.5 -10.6)" />,
+          // ngực trái: logo GaaP + cánh cụt, viewBox 1400×580, giữ đúng tỉ lệ
+          overlay: <image href={asset('/teams/gaap/gaap-penguin.svg')} x="211" y="109.35" width="90" height="37.3" />,
         },
         back: {
           template: 'tshirt-back',
-          overlay: <ZammyVerse ink={PINK} paper="none" transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+          // cụm cánh cụt + chữ (đo trong viewBox 105 30 195 195: x 113…288, y 42…195) thu .9, căn giữa tại (200 150)
+          // → đỉnh đầu cánh cụt cách bo cổ ~30, chữ không xuống quá thấp
+          overlay: <image href={asset('/teams/gaap/zammyverse-penguin.svg')} x="113.96" y="70.35" width="175.5" height="175.5" />,
         },
       },
     },
