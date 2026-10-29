@@ -1,6 +1,6 @@
 import { GaapLogo } from '@/data/artwork/gaap';
-import { GapLamRoiLogo } from '@/data/artwork/gap-lam-roi';
 import { JemiBusLogo } from '@/data/artwork/jemi-bus';
+import { RunningPenguin } from '@/data/artwork/running-penguin';
 import { TiltedPenguin } from '@/data/artwork/tilted-penguin';
 import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
@@ -67,18 +67,14 @@ export default defineTeam({
     {
       id: 'tre-trung-den',
       name: 'Trẻ Trung - Đen',
-      description: 'Bản áo đen của Trẻ Trung — logo GaaP và Zammy Verse in hồng #FF006E, mặt chữ để trống lộ màu áo.',
+      description: 'Bản áo đen của Trẻ Trung — ngực trái là chữ GaaP cạnh cánh cụt đang chạy, Zammy Verse sau lưng; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
       tags: ['Cổ tròn', 'Tay ngắn'],
       designColor: '#1E2126', // đen
       views: {
         front: {
           template: 'tshirt-front',
-          overlay: (
-            <>
-              <GaapLogo ink={PINK} paper="none" transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
-              <image href={asset('/teams/gaap/penguin.svg')} x="96" y="248" width="102" height="141" />
-            </>
-          ),
+          // ngực trái: chữ GaaP + cánh cụt chạy gom thành một cụm (tạm bỏ vệt nhoè)
+          overlay: <RunningPenguin ink={PINK} paper="none" streaks={false} transform="translate(256 128) scale(.5) translate(-82.5 -10.6)" />,
         },
         back: {
           template: 'tshirt-back',
@@ -89,7 +85,7 @@ export default defineTeam({
     {
       id: 'canh-cut-trang',
       name: 'Cánh Cụt - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D nghiêng ló nửa người từ gấu áo bên phải, logo Zammy Verse sau lưng.',
+      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D nghiêng ló nửa người từ gấu áo bên phải, logo chữ Hàn 제미 / 버스 in hồng #FF006E sau lưng.',
       tags: ['Cổ tròn', 'Tay ngắn'],
       designColor: '#F4F5F7', // trắng
       views: {
@@ -99,31 +95,13 @@ export default defineTeam({
             <>
               <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
               {/* sát gấu áo: dáng áo cắt phần dưới thắt lưng (và bàn chân) */}
-              <TiltedPenguin transform="translate(140 418)" />
+              <TiltedPenguin transform="translate(112 418) scale(1.4)" />
             </>
           ),
         },
         back: {
           template: 'tshirt-back',
-          overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
-        },
-      },
-    },
-    {
-      id: 'nghiem-tuc-trang',
-      name: 'Nghiêm Túc - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo Zammy Verse ngực trái, chim cánh cụt 3D đứng thẳng giữa lưng.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
-      designColor: '#F4F5F7', // trắng
-      views: {
-        front: {
-          template: 'tshirt-front',
-          overlay: <ZammyVerse transform="translate(256 128) scale(.34) translate(-95.5 -56)" />,
-        },
-        back: {
-          template: 'tshirt-back',
-          // ảnh 1323×1538 (viewBox penguin-3d.svg), giữ đúng tỉ lệ
-          overlay: <image href={asset('/teams/gaap/penguin-3d.svg')} x="128" y="110" width="144" height="167.4" />,
+          overlay: <JemiBusLogo ink={PINK} transform="translate(200 165) scale(.52) translate(-108.5 -103.5)" />,
         },
       },
     },
@@ -141,23 +119,6 @@ export default defineTeam({
         back: {
           template: 'tshirt-back',
           overlay: <JemiBusLogo ink={PINK} paper="none" transform="translate(200 165) scale(.52) translate(-108.5 -103.5)" />,
-        },
-      },
-    },
-    {
-      id: 'cot-nha-trang',
-      name: 'Cợt Nhã - Trắng',
-      description: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chữ GẤP / LẮM / RỒI!!! kiểu sticker như Zammy Verse sau lưng.',
-      tags: ['Cổ tròn', 'Tay ngắn'],
-      designColor: '#F4F5F7', // trắng
-      views: {
-        front: {
-          template: 'tshirt-front',
-          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
-        },
-        back: {
-          template: 'tshirt-back',
-          overlay: <GapLamRoiLogo transform="translate(200 200) scale(.33) translate(-23 -294.5)" />,
         },
       },
     },
