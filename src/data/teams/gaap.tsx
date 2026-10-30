@@ -1,12 +1,7 @@
 import { GaapLogo } from '@/data/artwork/gaap';
-import { JemiBusLogo } from '@/data/artwork/jemi-bus';
 import { PeekingPenguin } from '@/data/artwork/peeking-penguin';
-import { ZammyVerse } from '@/data/artwork/zammy-verse';
 import { asset } from '@/lib/asset';
 import { defineTeam } from '@/lib/define-team';
-
-/** Hồng của logo trên áo đen */
-const PINK = '#FF006E';
 
 const TSHIRT_TAGS = [{ vi: 'Cổ tròn', ko: '라운드넥' }, { vi: 'Tay ngắn', ko: '반팔' }];
 
@@ -43,61 +38,56 @@ export default defineTeam({
   designs: [
     {
       id: 'tre-trung-trang',
-      name: { vi: 'Tươi Trẻ', ko: '풋풋' },
+      name: { vi: 'Cụt Mệt', ko: '풋풋' },
       description: {
-        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, chim cánh cụt bụng phải, logo Zammy Verse sau lưng.',
-        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 배 부분에 펭귄, 등에 Zammy Verse 로고.',
+        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, sau lưng in lớn cánh cụt đội mũ chóp quàng khăn hồng chạy thở hồng hộc.',
+        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 등에는 실크햇에 핑크 목도리를 두르고 헐떡이며 달리는 큰 펭귄.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#F4F5F7', // trắng
       views: {
         front: {
           template: 'tshirt-front',
-          // trái/phải tính theo người mặc: ngực trái = bên phải khi nhìn mặt trước, bụng phải = bên trái
-          overlay: (
-            <>
-              <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />
-              {/* chim cánh cụt: SVG trace từ ảnh 842×1162, giữ đúng tỉ lệ */}
-              <image href={asset('/teams/gaap/penguin.svg')} x="96" y="248" width="102" height="141" />
-            </>
-          ),
+          // trái/phải tính theo người mặc: ngực trái = bên phải khi nhìn mặt trước
+          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
         },
         back: {
           template: 'tshirt-back',
-          overlay: <ZammyVerse transform="translate(200 150) scale(.92) translate(-95.5 -56)" />,
+          // cánh cụt chạy mệt: ảnh đã cắt sát hình 1191×973, giữ đúng tỉ lệ, căn giữa x 200, đỉnh mũ cách bo cổ ~45
+          overlay: <image href={asset('/teams/gaap/penguin-tired.webp')} x="141.5" y="95" width="117" height="95.58" />,
         },
         // shoulder: { template: 'sleeve' },  // mẫu nào có thiết kế ở vai thì khai báo thêm
       },
     },
     {
       id: 'tre-trung-den',
-      name: { vi: 'Trẻ Trung', ko: '청춘' },
+      name: { vi: 'Cụt Mừng', ko: '청춘' },
       description: {
-        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP có cánh cụt quàng khăn sau chữ P, sau lưng là cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
-        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 P 뒤로 목도리를 두른 펭귄이 숨은 GaaP 로고, 등에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là cánh cụt vẫy tay ló lên sau chữ GaaP / nha em trắng viền hồng.',
+        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 GaaP / nha em 뒤로 고개를 내밀고 손을 흔드는 펭귄.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
       views: {
         front: {
           template: 'tshirt-front',
-          // ngực trái: logo GaaP + cánh cụt, viewBox 1400×580, giữ đúng tỉ lệ
-          overlay: <image href={asset('/teams/gaap/gaap-penguin.svg')} x="211" y="109.35" width="90" height="37.3" />,
+          // ngực trái: logo GaaP + cánh cụt chạy, ảnh đã cắt sát hình 1547×590, giữ đúng tỉ lệ, tâm (256 126)
+          overlay: <image href={asset('/teams/gaap/gaap-penguin-run.webp')} x="214" y="110" width="84" height="32.04" />,
         },
         back: {
           template: 'tshirt-back',
-          // cụm cánh cụt + chữ (đo trong viewBox 105 30 195 195: x 113…288, y 42…195) thu .9, căn giữa tại (200 150)
+          // cánh cụt vẫy tay sau chữ GaaP / nha em, ảnh đã cắt sát hình 1184×937, giữ đúng tỉ lệ, căn giữa x 200
           // → đỉnh đầu cánh cụt cách bo cổ ~30, chữ không xuống quá thấp
-          overlay: <image href={asset('/teams/gaap/zammyverse-penguin.svg')} x="113.96" y="70.35" width="175.5" height="175.5" />,
+          overlay: <image href={asset('/teams/gaap/gaap-nha-em.webp')} x="120" y="81" width="160" height="126.62" />,
         },
       },
     },
     {
       id: 'canh-cut-trang',
-      name: { vi: 'Cánh Cụt', ko: '펭귄' },
+      name: { vi: 'Cụt Lỏ', ko: '펭귄' },
       description: {
-        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt 3D vẫy tay ló nửa người từ gấu áo bên phải, logo chữ Hàn 재미 / 버스 in hồng #FF006E sau lưng.',
-        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 밑단에서 상반신을 내밀고 손을 흔드는 3D 펭귄, 등에는 핑크 #FF006E로 인쇄한 한글 로고 재미 / 버스.',
+        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt vẫy tay ló nửa người từ gấu áo bên phải, sau lưng để trơn.',
+        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 오른쪽 밑단에서 상반신을 내밀고 손을 흔드는 펭귄, 등은 무지.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#F4F5F7', // trắng
@@ -112,54 +102,25 @@ export default defineTeam({
             </>
           ),
         },
-        back: {
-          template: 'tshirt-back',
-          overlay: <JemiBusLogo ink={PINK} transform="translate(200 165) scale(.52) translate(-108.5 -103.5)" />,
-        },
+        back: { template: 'tshirt-back' },
       },
     },
     {
-      id: 'cot-nha-den',
-      name: { vi: 'Cợt Nhã', ko: '장난꾸러기' },
+      id: 'cut-buh',
+      name: { vi: 'Cụt Bủh', ko: '헥헥' },
       description: {
-        vi: 'Áo đen in hồng #FF006E — logo Zammy Verse ngực trái, logo chữ Hàn 재미 / 버스 kiểu sticker sau lưng, mặt chữ để trống lộ màu áo.',
-        ko: '핑크 #FF006E로 인쇄한 블랙 티셔츠 — 왼쪽 가슴에 Zammy Verse 로고, 등에는 스티커 스타일의 한글 로고 재미 / 버스, 글자 안쪽은 비워 셔츠 색이 드러납니다.',
+        vi: 'Áo thun cổ tròn đen — giữa ngực in cánh cụt đội mũ chóp quàng khăn hồng chạy rạp người, lè lưỡi thở hồng hộc; sau lưng để trơn.',
+        ko: '블랙 라운드넥 티셔츠 — 가슴 가운데에 실크햇에 핑크 목도리를 두르고 몸을 숙인 채 혀를 내밀고 헐떡이며 달리는 펭귄, 등은 무지.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
       views: {
         front: {
           template: 'tshirt-front',
-          overlay: <ZammyVerse ink={PINK} paper="none" transform="translate(256 128) scale(.34) translate(-95.5 -56)" />,
+          // cánh cụt chạy rạp người: ảnh đã cắt sát hình 1432×821, giữ đúng tỉ lệ, căn giữa x 200
+          overlay: <image href={asset('/teams/gaap/penguin-exhausted.webp')} x="115" y="120" width="170" height="97.47" />,
         },
-        back: {
-          template: 'tshirt-back',
-          overlay: <JemiBusLogo ink={PINK} paper="none" transform="translate(200 165) scale(.52) translate(-108.5 -103.5)" />,
-        },
-      },
-    },
-    {
-      id: 'trung-tre',
-      name: { vi: 'Trủng Tre', ko: '춘청' },
-      description: {
-        vi: 'Trẻ Trung đảo mặt trên áo trắng — mặt trước in lớn cánh cụt 3D vẫy tay ló lên sau logo Zammy Verse, sau lưng là chữ GaaP nhỏ có cánh cụt quàng khăn sau chữ P, căn giữa; chữ in hồng #FF006E, mặt chữ để trống lộ màu áo.',
-        ko: '청춘의 앞뒤를 바꾼 화이트 버전 — 앞면에는 Zammy Verse 로고 뒤로 고개를 내밀고 손을 흔드는 3D 펭귄을 크게, 등 가운데에는 P 뒤로 목도리를 두른 펭귄이 숨은 작은 GaaP 로고; 글자는 핑크 #FF006E로 인쇄하고 글자 안쪽은 비워 셔츠 색이 드러납니다.',
-      },
-      tags: TSHIRT_TAGS,
-      designColor: '#F4F5F7', // trắng
-      views: {
-        front: {
-          template: 'tshirt-front',
-          // cụm cánh cụt + chữ cùng cỡ với mặt sau của Trẻ Trung, căn giữa tại (200 170): bo cổ trước sâu hơn
-          // bo cổ sau ~20 nên hạ xuống 20 để đỉnh đầu cánh cụt vẫn cách bo cổ ~30
-          overlay: <image href={asset('/teams/gaap/zammyverse-penguin.svg')} x="113.96" y="90.35" width="175.5" height="175.5" />,
-        },
-        back: {
-          template: 'tshirt-back',
-          // logo GaaP + cánh cụt cùng cỡ và độ cao với ngực trái của Trẻ Trung, căn giữa theo phần có nét
-          // (viewBox 1400×580, phần có nét: x 6.6…90.9% → tâm 48.7%)
-          overlay: <image href={asset('/teams/gaap/gaap-penguin.svg')} x="156.16" y="109.35" width="90" height="37.3" />,
-        },
+        back: { template: 'tshirt-back' },
       },
     },
   ],
