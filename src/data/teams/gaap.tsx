@@ -25,14 +25,17 @@ export default defineTeam({
     { name: { vi: 'Đen', ko: '블랙' }, hex: '#1E2126' },
     { name: { vi: 'Xanh navy', ko: '네이비' }, hex: '#1F3A68' },
     { name: { vi: 'Xanh dương', ko: '블루' }, hex: '#2F80ED' },
+    { name: { vi: 'Xanh baby', ko: '베이비 블루' }, hex: '#B5D7E4' },
     { name: { vi: 'Xanh ngọc', ko: '틸' }, hex: '#14B8A6' },
     { name: { vi: 'Xanh lá', ko: '그린' }, hex: '#27AE60' },
     { name: { vi: 'Xanh sage', ko: '세이지 그린' }, hex: '#93AC8A' },
+    { name: { vi: 'Xanh rừng', ko: '포레스트 그린' }, hex: '#1A3A33' },
     { name: { vi: 'Vàng', ko: '옐로' }, hex: '#F2C94C' },
     { name: { vi: 'Cam', ko: '오렌지' }, hex: '#F2994A' },
     { name: { vi: 'Đỏ', ko: '레드' }, hex: '#E5484D' },
     { name: { vi: 'Hồng', ko: '핑크' }, hex: '#F78FB3' },
     { name: { vi: 'Tím', ko: '퍼플' }, hex: '#7B61FF' },
+    { name: { vi: 'Tím lavender', ko: '라벤더' }, hex: '#CAC7F8' },
     { name: { vi: 'Xám', ko: '그레이' }, hex: '#9AA5B1' },
   ],
 
@@ -65,11 +68,11 @@ export default defineTeam({
       name: { vi: 'Cụt Mừng', ko: '청춘' },
       featured: true,
       description: {
-        vi: 'Áo thun cổ tròn xanh sage — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ Gấp nha em... trắng viền hồng kèm chú cánh cụt viền hồng nhỏ.',
-        ko: '세이지 그린 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 Gấp nha em...과 핑크 테두리의 작은 펭귄.',
+        vi: 'Áo thun cổ tròn xanh rừng — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ Gấp nha em... trắng viền hồng kèm chú cánh cụt viền hồng nhỏ.',
+        ko: '포레스트 그린 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 Gấp nha em...과 핑크 테두리의 작은 펭귄.',
       },
       tags: TSHIRT_TAGS,
-      designColor: '#93AC8A', // xanh sage
+      designColor: '#1A3A33', // xanh rừng
       views: {
         front: {
           template: 'tshirt-front',
@@ -79,9 +82,57 @@ export default defineTeam({
         },
         back: {
           template: 'tshirt-back',
-          // chữ GấP nha em... trắng viền hồng, cánh cụt viền hồng dày, SVG đã cắt sát hình (tính cả viền) 1509×712,
-          // giữ đúng tỉ lệ, căn giữa x 200 → đỉnh chữ cách bo cổ ~60
-          overlay: <image href={asset('/teams/gaap/gap-nha-em-penguin-white.svg')} x="120" y="111" width="160" height="75.53" />,
+          // chữ GấP nha em... trắng, viền ngoài hồng dày bao cả chữ lẫn cánh cụt, SVG đã cắt sát hình (tính cả viền) 1509×737,
+          // giữ đúng tỉ lệ, căn giữa x 200 → đỉnh viền cách bo cổ ~58
+          overlay: <image href={asset('/teams/gaap/gap-nha-em-penguin-white.svg')} x="120" y="108.35" width="160" height="78.18" />,
+        },
+      },
+    },
+    {
+      id: 'cut-gap',
+      name: { vi: 'Cụt Gâp', ko: '후다닥' },
+      featured: true,
+      description: {
+        vi: 'Áo thun cổ tròn tím lavender — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ GâP trắng viền hồng.',
+        ko: '라벤더 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 GâP.',
+      },
+      tags: TSHIRT_TAGS,
+      designColor: '#CAC7F8', // tím lavender
+      views: {
+        front: {
+          template: 'tshirt-front',
+          // giống Cụt Mừng
+          overlay: <image href={asset('/teams/gaap/gaap-pink-white.svg')} x="214" y="110.73" width="84.76" height="30.53" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          // chữ GâP trắng viền hồng dày, SVG đã cắt sát hình (tính cả viền) 1322×580,
+          // giữ đúng tỉ lệ, rộng bằng hình sau lưng Cụt Mừng, căn giữa x 200 → đỉnh viền cách bo cổ ~58
+          overlay: <image href={asset('/teams/gaap/gap-circumflex-white-pink.svg')} x="120" y="108.35" width="160" height="70.2" />,
+        },
+      },
+    },
+    {
+      id: 'cut-gaap',
+      name: { vi: 'Cụt Gaap', ko: '가즈아' },
+      featured: true,
+      description: {
+        vi: 'Áo thun cổ tròn xanh baby — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ GaaP nha em... trắng viền hồng kèm chú cánh cụt viền hồng nhỏ.',
+        ko: '베이비 블루 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 GaaP nha em...과 핑크 테두리의 작은 펭귄.',
+      },
+      tags: TSHIRT_TAGS,
+      designColor: '#B5D7E4', // xanh baby
+      views: {
+        front: {
+          template: 'tshirt-front',
+          // giống Cụt Mừng
+          overlay: <image href={asset('/teams/gaap/gaap-pink-white.svg')} x="214" y="110.73" width="84.76" height="30.53" />,
+        },
+        back: {
+          template: 'tshirt-back',
+          // chữ GaaP nha em... trắng, viền ngoài hồng dày bao cả chữ lẫn cánh cụt, SVG đã cắt sát hình (tính cả viền) 1673×657,
+          // giữ đúng tỉ lệ, rộng bằng hình sau lưng Cụt Mừng, căn giữa x 200 → đỉnh viền cách bo cổ ~58
+          overlay: <image href={asset('/teams/gaap/gaap-nha-em-penguin-white.svg')} x="120" y="108.35" width="160" height="62.83" />,
         },
       },
     },
