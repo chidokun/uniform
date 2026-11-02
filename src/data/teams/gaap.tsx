@@ -72,8 +72,8 @@ export default defineTeam({
       views: {
         front: {
           template: 'tshirt-front',
-          // ngực trái: logo GaaP + cánh cụt chạy, ảnh đã cắt sát hình 1547×590, giữ đúng tỉ lệ, tâm (256 126)
-          overlay: <image href={asset('/teams/gaap/gaap-penguin-run.webp')} x="214" y="110" width="84" height="32.04" />,
+          // ngực trái: logo GaaP + cánh cụt chạy tung bụi, SVG đã cắt sát hình 1776×613, giữ đúng tỉ lệ, tâm (256 126)
+          overlay: <image href={asset('/teams/gaap/gaap-chubby-smoke.svg')} x="214" y="111.49" width="84" height="29.01" />,
         },
         back: {
           template: 'tshirt-back',
