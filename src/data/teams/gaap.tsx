@@ -27,6 +27,7 @@ export default defineTeam({
     { name: { vi: 'Xanh dương', ko: '블루' }, hex: '#2F80ED' },
     { name: { vi: 'Xanh ngọc', ko: '틸' }, hex: '#14B8A6' },
     { name: { vi: 'Xanh lá', ko: '그린' }, hex: '#27AE60' },
+    { name: { vi: 'Xanh sage', ko: '세이지 그린' }, hex: '#93AC8A' },
     { name: { vi: 'Vàng', ko: '옐로' }, hex: '#F2C94C' },
     { name: { vi: 'Cam', ko: '오렌지' }, hex: '#F2994A' },
     { name: { vi: 'Đỏ', ko: '레드' }, hex: '#E5484D' },
@@ -64,22 +65,23 @@ export default defineTeam({
       name: { vi: 'Cụt Mừng', ko: '청춘' },
       featured: true,
       description: {
-        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ Gấp nha em... viền hồng (lòng chữ lộ màu áo) kèm chú cánh cụt hồng nhỏ.',
-        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 셔츠 색이 비치는 핑크 테두리 글자 Gấp nha em...과 작은 핑크 펭귄.',
+        vi: 'Áo thun cổ tròn xanh sage — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ Gấp nha em... trắng viền hồng kèm chú cánh cụt viền hồng nhỏ.',
+        ko: '세이지 그린 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 Gấp nha em...과 핑크 테두리의 작은 펭귄.',
       },
       tags: TSHIRT_TAGS,
-      designColor: '#1E2126', // đen
+      designColor: '#93AC8A', // xanh sage
       views: {
         front: {
           template: 'tshirt-front',
-          // ngực trái: logo GaaP hồng #FF006E (cùng màu mặt sau) + cánh cụt chạy tung bụi, SVG đã cắt sát hình 1776×613, giữ đúng tỉ lệ, tâm (256 126)
-          overlay: <image href={asset('/teams/gaap/gaap-pink.svg')} x="214" y="111.49" width="84" height="29.01" />,
+          // ngực trái: chữ GaaP trắng viền hồng #FF006E + cánh cụt chạy tung bụi viền hồng, SVG đã cắt sát hình (tính cả viền) 1792×645,
+          // giữ đúng tỉ lệ, tâm khoảng (256 126)
+          overlay: <image href={asset('/teams/gaap/gaap-pink-white.svg')} x="214" y="110.73" width="84.76" height="30.53" />,
         },
         back: {
           template: 'tshirt-back',
-          // chữ GấP nha em... với cánh cụt hồng, phần trắng trong suốt (lộ màu áo), SVG đã cắt sát hình 1473×714, giữ đúng tỉ lệ, căn giữa x 200
-          // → đỉnh chữ cách bo cổ ~60
-          overlay: <image href={asset('/teams/gaap/gap-nha-em-penguin-transparent.svg')} x="120" y="111" width="160" height="77.51" />,
+          // chữ GấP nha em... trắng viền hồng, cánh cụt viền hồng dày, SVG đã cắt sát hình (tính cả viền) 1509×712,
+          // giữ đúng tỉ lệ, căn giữa x 200 → đỉnh chữ cách bo cổ ~60
+          overlay: <image href={asset('/teams/gaap/gap-nha-em-penguin-white.svg')} x="120" y="111" width="160" height="75.53" />,
         },
       },
     },
