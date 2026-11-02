@@ -8,7 +8,7 @@ npm run dev      # http://localhost:3000
 npm run build    # xuất site tĩnh ra out/
 ```
 
-URL: `/<đội>/<mẫu>/?color=<hex>` — vd `/gaap/tre-trung-trang/?color=2F80ED`. Mở `/` sẽ tự chuyển tới mẫu đầu tiên của đội đầu tiên.
+URL: `/<đội>/<mẫu>/?color=<hex>` — vd `/gaap/cut-met/?color=2F80ED`. Mở `/` sẽ tự chuyển tới mẫu đầu tiên của đội đầu tiên.
 
 ## Deploy GitHub Pages
 
@@ -67,6 +67,7 @@ Thêm một object vào `designs` trong `src/data/teams/<đội>.tsx`:
 {
   id: 'classic-10',                 // dùng trên URL, không trùng trong đội
   name: 'Classic số 10',
+  featured: true,                   // tuỳ chọn, mẫu đề cử — lên đầu danh sách, trong nhóm "Đề cử" (các mẫu khác vào "Thiết kế khác")
   description: 'Logo ngực trái, số lớn sau lưng.',
   tags: ['Mùa 2026'],
   designColor: '#F4F5F7',           // tuỳ chọn, màu gốc của mẫu — tách riêng, các màu còn lại để xem trước

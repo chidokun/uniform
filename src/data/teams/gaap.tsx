@@ -37,7 +37,7 @@ export default defineTeam({
 
   designs: [
     {
-      id: 'tre-trung-trang',
+      id: 'cut-met',
       name: { vi: 'Cụt Mệt', ko: '풋풋' },
       description: {
         vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, sau lưng in lớn cánh cụt đội mũ chóp quàng khăn hồng chạy thở hồng hộc.',
@@ -60,11 +60,12 @@ export default defineTeam({
       },
     },
     {
-      id: 'tre-trung-den',
+      id: 'cut-mung',
       name: { vi: 'Cụt Mừng', ko: '청춘' },
+      featured: true,
       description: {
-        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là cánh cụt vẫy tay ló lên sau chữ GaaP / nha em trắng viền hồng.',
-        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 핑크 테두리의 흰색 글자 GaaP / nha em 뒤로 고개를 내밀고 손을 흔드는 펭귄.',
+        vi: 'Áo thun cổ tròn đen — ngực trái là chữ GaaP trắng viền hồng với cánh cụt đội mũ chóp, quàng khăn hồng chạy theo sau; sau lưng là chữ Gấp nha em... viền hồng (lòng chữ lộ màu áo) kèm chú cánh cụt hồng nhỏ.',
+        ko: '블랙 라운드넥 티셔츠 — 왼쪽 가슴에는 핑크 테두리의 흰색 GaaP 로고와 그 뒤를 달려오는 실크햇에 핑크 목도리를 두른 펭귄, 등에는 셔츠 색이 비치는 핑크 테두리 글자 Gấp nha em...과 작은 핑크 펭귄.',
       },
       tags: TSHIRT_TAGS,
       designColor: '#1E2126', // đen
@@ -76,14 +77,14 @@ export default defineTeam({
         },
         back: {
           template: 'tshirt-back',
-          // cánh cụt vẫy tay sau chữ GaaP / nha em, ảnh đã cắt sát hình 1184×937, giữ đúng tỉ lệ, căn giữa x 200
-          // → đỉnh đầu cánh cụt cách bo cổ ~30, chữ không xuống quá thấp
-          overlay: <image href={asset('/teams/gaap/gaap-nha-em.webp')} x="120" y="81" width="160" height="126.62" />,
+          // chữ GấP nha em... với cánh cụt hồng, phần trắng trong suốt (lộ màu áo), SVG đã cắt sát hình 1473×714, giữ đúng tỉ lệ, căn giữa x 200
+          // → đỉnh chữ cách bo cổ ~60
+          overlay: <image href={asset('/teams/gaap/gap-nha-em-penguin-transparent.svg')} x="120" y="111" width="160" height="77.51" />,
         },
       },
     },
     {
-      id: 'canh-cut-trang',
+      id: 'cut-lo',
       name: { vi: 'Cụt Lỏ', ko: '펭귄' },
       description: {
         vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, cánh cụt vẫy tay ló nửa người từ gấu áo bên phải, sau lưng để trơn.',

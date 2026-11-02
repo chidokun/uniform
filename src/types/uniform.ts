@@ -32,6 +32,8 @@ export interface Design {
   id: string;
   /** Chuỗi thường hoặc bản dịch theo ngôn ngữ, vd `{ vi: 'Trẻ Trung', ko: '청춘' }` */
   name: Text;
+  /** Mẫu đề cử — xếp lên đầu, nằm trong nhóm "Đề cử" của danh sách mẫu */
+  featured?: boolean;
   description?: Text;
   tags?: Text[];
   /** Bảng màu riêng của mẫu (mặc định dùng palette của đội) */

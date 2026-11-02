@@ -592,11 +592,24 @@ button, select { font: inherit; color: inherit; }
 .design-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   min-height: 0;
   padding: 4px;
   overflow-y: auto;
   scrollbar-width: thin;
+}
+
+/* Nhóm mẫu: Đề cử | Thiết kế khác */
+.design-group { display: flex; flex-direction: column; gap: 10px; }
+.design-group-items { display: flex; flex-direction: column; gap: 12px; }
+
+.design-group-label {
+  margin: 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .design-item {
@@ -1262,6 +1275,8 @@ button, select { font: inherit; color: inherit; }
     scroll-snap-type: x mandatory;
   }
 
+  .design-group { flex: none; }
+  .design-group-items { flex-direction: row; }
   .design-item { flex: 0 0 240px; scroll-snap-align: start; }
 }
 

@@ -11,17 +11,18 @@ function normalizePalette(colors: ColorOption[], owner: string): ColorOption[] {
 }
 
 /**
- * Khai báo một đội: kiểm tra id trùng, chuẩn hoá mã màu.
+ * Khai báo một đội: kiểm tra id trùng, chuẩn hoá mã màu, đưa mẫu đề cử lên đầu (giữ thứ tự trong từng nhóm).
  * Dùng trong src/data/teams/<id>.tsx: `export default defineTeam({ ... })`.
  */
 export function defineTeam(team: Team): Team {
   if (!team.palette.length) throw new Error(`[team-uniform] Đội "${team.id}" cần ít nhất 1 màu trong palette.`);
   const ids = new Set<string>();
+  const designs = [...team.designs.filter((d) => d.featured), ...team.designs.filter((d) => !d.featured)];
 
   return {
     ...team,
     palette: normalizePalette(team.palette, `đội ${team.id}`),
-    designs: team.designs.map((design) => {
+    designs: designs.map((design) => {
       if (ids.has(design.id)) throw new Error(`[team-uniform] Mẫu "${design.id}" bị trùng trong đội "${team.id}".`);
       ids.add(design.id);
       return {

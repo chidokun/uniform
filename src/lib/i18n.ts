@@ -45,6 +45,8 @@ const vi = {
 
   designs: 'Mẫu thiết kế',
   designList: 'Danh sách mẫu thiết kế',
+  featuredDesigns: 'Đề cử',
+  otherDesigns: 'Thiết kế khác',
   teamHasNoDesigns: 'Đội này chưa có mẫu thiết kế.',
   designIndex: (n: number) => `MẪU ${pad(n)}`,
   designEyebrow: (team: string, n: number) => `${team} · Mẫu ${pad(n)}`,
@@ -104,6 +106,8 @@ const ko: Messages = {
 
   designs: '디자인',
   designList: '디자인 목록',
+  featuredDesigns: '추천',
+  otherDesigns: '다른 디자인',
   teamHasNoDesigns: '이 팀에는 아직 디자인이 없습니다.',
   designIndex: (n) => `디자인 ${pad(n)}`,
   designEyebrow: (team, n) => `${team} · 디자인 ${pad(n)}`,

@@ -23,6 +23,18 @@ export function DesignSidebar({ team, activeId }: Props) {
     activeRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }, [activeId]);
 
+  // Có mẫu đề cử thì chia 2 nhóm Đề cử / Thiết kế khác, không thì 1 danh sách không tiêu đề
+  const featured = team.designs.filter((d) => d.featured);
+  const others = team.designs.filter((d) => !d.featured);
+  const groups = (
+    featured.length
+      ? [
+          { key: 'featured', label: t.featuredDesigns, designs: featured },
+          { key: 'others', label: t.otherDesigns, designs: others },
+        ]
+      : [{ key: 'all', label: undefined, designs: others }]
+  ).filter((g) => g.designs.length);
+
   return (
     <aside className="sidebar glass">
       <div className="sidebar-head">
@@ -32,28 +44,35 @@ export function DesignSidebar({ team, activeId }: Props) {
 
       <nav className="design-list" aria-label={t.designList}>
         {team.designs.length === 0 && <p className="design-empty">{t.teamHasNoDesigns}</p>}
-        {team.designs.map((design, i) => {
-          const active = design.id === activeId;
-          return (
-            <Link
-              key={design.id}
-              ref={active ? activeRef : undefined}
-              href={designHref(team, design)}
-              scroll={false}
-              className={`design-item glass${active ? ' is-active' : ''}`}
-              aria-current={active ? 'page' : undefined}
-            >
-              <span className="design-thumb well" style={shirtVars(defaultColorOf(design, team))}>
-                <GarmentView view={design.views.front} label={tx(design.name)} />
-              </span>
-              <span className="design-info">
-                <span className="design-index">{t.designIndex(i + 1)}</span>
-                <span className="design-name">{tx(design.name)}</span>
-                <span className="design-meta">{viewsOf(design).map((s) => t.views[s.key].toLowerCase()).join(' · ')}</span>
-              </span>
-            </Link>
-          );
-        })}
+        {groups.map((group) => (
+          <div key={group.key} className="design-group" role="group" aria-label={group.label}>
+            {group.label && <span className="design-group-label">{group.label}</span>}
+            <div className="design-group-items">
+              {group.designs.map((design) => {
+                const active = design.id === activeId;
+                return (
+                  <Link
+                    key={design.id}
+                    ref={active ? activeRef : undefined}
+                    href={designHref(team, design)}
+                    scroll={false}
+                    className={`design-item glass${active ? ' is-active' : ''}`}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    <span className="design-thumb well" style={shirtVars(defaultColorOf(design, team))}>
+                      <GarmentView view={design.views.front} label={tx(design.name)} />
+                    </span>
+                    <span className="design-info">
+                      <span className="design-index">{t.designIndex(team.designs.indexOf(design) + 1)}</span>
+                      <span className="design-name">{tx(design.name)}</span>
+                      <span className="design-meta">{viewsOf(design).map((s) => t.views[s.key].toLowerCase()).join(' · ')}</span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
     </aside>
   );
