@@ -8,7 +8,7 @@ npm run dev      # http://localhost:3000
 npm run build    # xuất site tĩnh ra out/
 ```
 
-URL: `/<đội>/<mẫu>/?color=<hex>` — vd `/gaap/cut-met/?color=2F80ED`. Mở `/` sẽ tự chuyển tới mẫu đầu tiên của đội đầu tiên.
+URL: `/<đội>/<mẫu>/?color=<hex>` — vd `/gaap/cut-mung/?color=2F80ED`. Mở `/` sẽ tự chuyển tới mẫu đầu tiên của đội đầu tiên.
 
 ## Deploy GitHub Pages
 

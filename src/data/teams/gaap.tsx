@@ -41,29 +41,6 @@ export default defineTeam({
 
   designs: [
     {
-      id: 'cut-met',
-      name: { vi: 'Cụt Mệt', ko: '풋풋' },
-      description: {
-        vi: 'Áo thun cổ tròn trắng — logo GaaP ngực trái, sau lưng in lớn cánh cụt đội mũ chóp quàng khăn hồng chạy thở hồng hộc.',
-        ko: '흰색 라운드넥 티셔츠 — 왼쪽 가슴에 GaaP 로고, 등에는 실크햇에 핑크 목도리를 두르고 헐떡이며 달리는 큰 펭귄.',
-      },
-      tags: TSHIRT_TAGS,
-      designColor: '#F4F5F7', // trắng
-      views: {
-        front: {
-          template: 'tshirt-front',
-          // trái/phải tính theo người mặc: ngực trái = bên phải khi nhìn mặt trước
-          overlay: <GaapLogo transform="translate(256 126) scale(.18) translate(-181.5 -80.5)" />,
-        },
-        back: {
-          template: 'tshirt-back',
-          // cánh cụt chạy mệt: ảnh đã cắt sát hình 1191×973, giữ đúng tỉ lệ, căn giữa x 200, đỉnh mũ cách bo cổ ~45
-          overlay: <image href={asset('/teams/gaap/penguin-tired.webp')} x="141.5" y="95" width="117" height="95.58" />,
-        },
-        // shoulder: { template: 'sleeve' },  // mẫu nào có thiết kế ở vai thì khai báo thêm
-      },
-    },
-    {
       id: 'cut-mung',
       name: { vi: 'Cụt Mừng', ko: '청춘' },
       featured: true,
@@ -155,24 +132,6 @@ export default defineTeam({
               <PeekingPenguin transform="translate(146 418) scale(1.4)" />
             </>
           ),
-        },
-        back: { template: 'tshirt-back' },
-      },
-    },
-    {
-      id: 'cut-buh',
-      name: { vi: 'Cụt Bủh', ko: '헥헥' },
-      description: {
-        vi: 'Áo thun cổ tròn đen — giữa ngực in cánh cụt đội mũ chóp quàng khăn hồng chạy rạp người, lè lưỡi thở hồng hộc; sau lưng để trơn.',
-        ko: '블랙 라운드넥 티셔츠 — 가슴 가운데에 실크햇에 핑크 목도리를 두르고 몸을 숙인 채 혀를 내밀고 헐떡이며 달리는 펭귄, 등은 무지.',
-      },
-      tags: TSHIRT_TAGS,
-      designColor: '#1E2126', // đen
-      views: {
-        front: {
-          template: 'tshirt-front',
-          // cánh cụt chạy rạp người: ảnh đã cắt sát hình 1432×821, giữ đúng tỉ lệ, căn giữa x 200
-          overlay: <image href={asset('/teams/gaap/penguin-exhausted.webp')} x="115" y="120" width="170" height="97.47" />,
         },
         back: { template: 'tshirt-back' },
       },
